@@ -3,61 +3,122 @@ import { demoContent } from '../../data/demoContent'
 import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/Eyebrow'
-import { ArrowDownRightIcon, ArrowRightIcon, CheckIcon } from '../ui/icons'
+import {
+  ArrowRightIcon,
+  CoachIcon,
+  GroupIcon,
+  PlayIcon,
+  TargetIcon,
+} from '../ui/icons'
+
+const benefitIcons = [CoachIcon, GroupIcon, TargetIcon]
 
 export function HeroSection() {
   const { hero } = demoContent
 
   return (
-    <section className="relative isolate flex min-h-[100svh] overflow-hidden bg-[var(--theme-background)]" id="inicio">
+    <section
+      className="relative isolate h-[clamp(620px,165vw,760px)] overflow-hidden bg-[var(--theme-background)] lg:h-[clamp(760px,57.3vw,840px)]"
+      id="inicio"
+    >
       <img
         alt="Atleta entrenando fuerza con barra en EZE Studio"
-        className="absolute inset-0 -z-30 size-full object-cover object-[61%_center] lg:object-center"
+        className="absolute inset-0 -z-30 size-full object-cover object-[67%_center] lg:object-center"
         fetchPriority="high"
         loading="eager"
         src={heroImage}
       />
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(8,10,11,0.42)_0%,rgba(8,10,11,0.1)_28%,rgba(8,10,11,0.58)_65%,#080A0B_100%)] lg:bg-[linear-gradient(90deg,#080A0B_0%,rgba(8,10,11,0.88)_25%,rgba(8,10,11,0.3)_57%,rgba(8,10,11,0.08)_76%)]" />
-      <div className="absolute inset-0 -z-10 hidden bg-[linear-gradient(180deg,rgba(8,10,11,0.34)_0%,rgba(8,10,11,0)_30%,rgba(8,10,11,0.08)_62%,#080A0B_100%)] lg:block" />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(8,10,11,.90)_0%,rgba(8,10,11,.72)_32%,rgba(8,10,11,.18)_68%,rgba(8,10,11,.04)_100%)] lg:bg-[linear-gradient(90deg,rgba(8,10,11,.96)_0%,rgba(8,10,11,.88)_25%,rgba(8,10,11,.50)_48%,rgba(8,10,11,.08)_68%,rgba(8,10,11,0)_100%)]" />
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(8,10,11,.38)_0%,rgba(8,10,11,.04)_34%,rgba(8,10,11,.18)_62%,rgba(8,10,11,.92)_100%)] lg:bg-[linear-gradient(180deg,rgba(8,10,11,0)_0%,rgba(8,10,11,0)_65%,rgba(8,10,11,.42)_82%,rgba(8,10,11,.90)_100%)]" />
 
-      <Container className="flex min-h-[100svh] flex-col justify-end pb-7 pt-28 lg:justify-between lg:pb-9 lg:pt-44">
-        <div className="max-w-[36rem] lg:max-w-[43rem]">
-          <Eyebrow className="mb-4 lg:mb-5">{hero.eyebrow}</Eyebrow>
-          <h1 className="text-[clamp(3rem,14vw,4.15rem)] font-black uppercase leading-[0.86] tracking-[-0.065em] text-[var(--theme-text)] lg:text-[5.75rem]">
-            {hero.title.map((line) => <span className="block" key={line}>{line}</span>)}
+      <Container className="flex h-full max-w-[90rem] flex-col px-4 pb-6 pt-[7.75rem] sm:px-6 lg:px-12 lg:pb-14 lg:pt-[10.75rem]">
+        <div className="max-w-[36rem]">
+          <Eyebrow className="mb-3 lg:mb-[1.0625rem]">{hero.eyebrow}</Eyebrow>
+          <h1 className="max-w-[21rem] text-[clamp(2.6rem,10.7vw,4.5rem)] font-black uppercase leading-[0.88] tracking-[-0.035em] text-[var(--theme-text)] lg:max-w-none lg:text-[clamp(4.75rem,5.55vw,5.125rem)] lg:leading-[0.90]">
+            {hero.title.map((line) => (
+              <span className="block" key={line}>
+                {line}
+              </span>
+            ))}
           </h1>
-          <p className="mt-5 max-w-[33rem] text-sm leading-6 text-[var(--theme-secondary)] lg:mt-6 lg:text-base lg:leading-7">
+          <span
+            aria-hidden="true"
+            className="mb-[1.0625rem] mt-[1.0625rem] block h-0.5 w-10 bg-[var(--theme-accent)] lg:w-12"
+          />
+          <p className="max-w-[20rem] text-[0.825rem] leading-[1.55] text-[var(--theme-secondary)] lg:max-w-[22rem] lg:text-base">
             {hero.description}
           </p>
 
-          <div className="mt-6 flex flex-col items-stretch gap-3 lg:mt-8 lg:flex-row lg:items-center">
-            <Button className="gap-3 px-6 text-xs tracking-[0.1em]" external={hero.primaryCta.external} href={hero.primaryCta.href}>
+          <div className="mt-5 flex flex-col items-start gap-3 lg:mt-7 lg:flex-row lg:items-center lg:gap-7">
+            <Button
+              className="h-12 w-[12.75rem] gap-3 px-5 text-[0.68rem] tracking-[0.1em] lg:h-14 lg:w-[14.75rem] lg:text-xs"
+              external={hero.primaryCta.external}
+              href={hero.primaryCta.href}
+            >
               <span>{hero.primaryCta.label}</span>
               <ArrowRightIcon className="size-4" />
             </Button>
-            <Button className="gap-3 border-[var(--theme-border)] bg-transparent px-6 text-xs tracking-[0.1em]" href={hero.secondaryCta.href} variant="ghost">
+            <a
+              className="inline-flex min-h-8 items-center gap-2.5 text-[0.68rem] font-semibold tracking-[0.1em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:text-xs"
+              href={hero.secondaryCta.href}
+            >
+              <PlayIcon className="size-6 shrink-0 text-[var(--theme-accent)]" />
               <span>{hero.secondaryCta.label}</span>
-              <ArrowDownRightIcon className="size-4 text-[var(--theme-accent)]" />
-            </Button>
+            </a>
           </div>
         </div>
 
-        <div className="mt-8 flex items-end justify-between lg:mt-12">
-          <ul className="grid gap-2.5 text-[0.63rem] font-bold tracking-[0.1em] text-[var(--theme-secondary)] lg:flex lg:gap-10 lg:text-[0.68rem]">
+        <div className="mt-auto border-t border-[var(--theme-border)] pb-4 pt-5 lg:border-0 lg:pb-0 lg:pt-0">
+          <ul className="grid grid-cols-3 lg:hidden">
+            {hero.benefits.map((benefit, index) => {
+              const BenefitIcon = benefitIcons[index]
+
+              return (
+                <li
+                  className="relative flex min-w-0 flex-col items-center px-1 text-center"
+                  key={benefit}
+                >
+                  {index > 0 ? (
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-0 top-0 h-14 w-px bg-[var(--theme-accent)] opacity-30"
+                    />
+                  ) : null}
+                  <BenefitIcon className="size-6 text-[var(--theme-accent)]" />
+                  <span className="mt-2 max-w-[6.5rem] text-[0.56rem] font-bold leading-[1.35] tracking-[0.055em] text-[var(--theme-secondary)]">
+                    {benefit}
+                  </span>
+                </li>
+              )
+            })}
+          </ul>
+
+          <ul className="hidden grid-cols-[auto_auto_auto] gap-12 lg:grid">
             {hero.benefits.map((benefit) => (
-              <li className="flex items-center gap-2" key={benefit}>
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-[var(--theme-accent)] text-[var(--theme-accent-text)]">
-                  <CheckIcon className="size-3" />
+              <li className="flex items-center gap-3" key={benefit}>
+                <span
+                  aria-hidden="true"
+                  className="h-9 w-0.5 shrink-0 bg-[var(--theme-accent)]"
+                />
+                <span className="max-w-[11rem] text-[0.68rem] font-bold leading-[1.45] tracking-[0.1em] text-[var(--theme-secondary)]">
+                  {benefit}
                 </span>
-                <span>{benefit}</span>
               </li>
             ))}
           </ul>
-          <div aria-hidden="true" className="hidden items-center gap-3 text-xs font-bold tracking-[0.16em] text-[var(--theme-text)] lg:flex">
-            <span>01</span><span className="h-px w-12 bg-[var(--theme-border)]" /><span className="text-[var(--theme-muted)]">04</span>
-          </div>
         </div>
       </Container>
+
+      <div
+        aria-hidden="true"
+        className="absolute right-12 top-[37%] hidden flex-col items-center text-xs font-bold tracking-[0.16em] text-[var(--theme-text)] lg:flex"
+      >
+        <span>01</span>
+        <span className="relative my-2 h-20 w-px bg-[var(--theme-border)]">
+          <span className="absolute left-0 top-0 h-5 w-px bg-[var(--theme-accent)]" />
+        </span>
+        <span className="text-[var(--theme-muted)]">04</span>
+      </div>
     </section>
   )
 }
