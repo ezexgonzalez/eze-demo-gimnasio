@@ -1,5 +1,5 @@
-import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/layout/Navbar'
+import { HeroSection } from './components/sections/HeroSection'
 import { siteConfig } from './data/siteConfig'
 import { createThemeStyles } from './utils/themeStyles'
 
@@ -15,9 +15,9 @@ function App() {
 
       <Navbar />
 
-      <main id="main-content" tabIndex="-1" />
-
-      <Footer />
+      <main id="main-content" tabIndex="-1">
+        <HeroSection />
+      </main>
     </div>
   )
 }
