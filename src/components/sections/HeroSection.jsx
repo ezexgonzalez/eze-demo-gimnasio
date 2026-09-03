@@ -23,12 +23,12 @@ export function HeroSection() {
     >
       <img
         alt="Atleta entrenando fuerza con barra en EZE Studio"
-        className="absolute inset-0 -z-30 size-full object-cover object-[67%_center] lg:object-[50%_0%]"
+        className="absolute inset-0 -z-30 size-full object-cover object-[60%_center] lg:object-[50%_0%]"
         fetchPriority="high"
         loading="eager"
         src={heroImage}
       />
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(8,10,11,.90)_0%,rgba(8,10,11,.72)_32%,rgba(8,10,11,.18)_68%,rgba(8,10,11,.04)_100%)] lg:bg-[linear-gradient(90deg,rgba(8,10,11,.96)_0%,rgba(8,10,11,.88)_25%,rgba(8,10,11,.50)_48%,rgba(8,10,11,.08)_68%,rgba(8,10,11,0)_100%)]" />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(8,10,11,.94)_0%,rgba(8,10,11,.82)_38%,rgba(8,10,11,.58)_72%,rgba(8,10,11,.18)_100%)] lg:bg-[linear-gradient(90deg,rgba(8,10,11,.96)_0%,rgba(8,10,11,.88)_25%,rgba(8,10,11,.50)_48%,rgba(8,10,11,.08)_68%,rgba(8,10,11,0)_100%)]" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(8,10,11,.38)_0%,rgba(8,10,11,.04)_34%,rgba(8,10,11,.18)_62%,rgba(8,10,11,.92)_100%)] lg:bg-[linear-gradient(180deg,rgba(8,10,11,0)_0%,rgba(8,10,11,0)_65%,rgba(8,10,11,.42)_82%,rgba(8,10,11,.90)_100%)]" />
 
       <Container className="relative z-10 flex max-w-[90rem] flex-1 flex-col px-4 pb-6 pt-[7.75rem] sm:px-6 lg:static lg:z-auto lg:h-full lg:px-12 lg:pb-14 lg:pt-[10.75rem]">
@@ -43,13 +43,13 @@ export function HeroSection() {
           </h1>
           <span
             aria-hidden="true"
-            className="mb-[1.0625rem] mt-[1.0625rem] block h-0.5 w-10 bg-[var(--theme-accent)] lg:w-12"
+            className="mb-[1.3125rem] mt-[0.9375rem] block h-0.5 w-10 bg-[var(--theme-accent)] lg:mb-[1.0625rem] lg:mt-[1.0625rem] lg:w-12"
           />
           <p className="max-w-[20rem] text-[0.825rem] leading-[1.55] text-[var(--theme-secondary)] lg:max-w-[22rem] lg:text-base">
             {hero.description}
           </p>
 
-          <div className="mt-5 flex flex-col items-start gap-3 lg:mt-7 lg:flex-row lg:items-center lg:gap-7">
+          <div className="mt-[1.6875rem] flex flex-col items-start gap-[1.0625rem] lg:mt-7 lg:flex-row lg:items-center lg:gap-7">
             <Button
               className="h-12 w-[12.75rem] gap-3 px-5 text-[0.68rem] tracking-[0.1em] lg:h-14 lg:w-[14.75rem] lg:text-xs"
               external={hero.primaryCta.external}
