@@ -18,7 +18,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative isolate h-[clamp(620px,165vw,760px)] overflow-hidden bg-[var(--theme-background)] lg:h-[100svh] lg:min-h-[760px]"
+      className="relative isolate flex min-h-[100dvh] flex-col overflow-hidden bg-[var(--theme-background)] lg:block lg:h-[100svh] lg:min-h-[760px]"
       id="inicio"
     >
       <img
@@ -31,7 +31,7 @@ export function HeroSection() {
       <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(8,10,11,.90)_0%,rgba(8,10,11,.72)_32%,rgba(8,10,11,.18)_68%,rgba(8,10,11,.04)_100%)] lg:bg-[linear-gradient(90deg,rgba(8,10,11,.96)_0%,rgba(8,10,11,.88)_25%,rgba(8,10,11,.50)_48%,rgba(8,10,11,.08)_68%,rgba(8,10,11,0)_100%)]" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(8,10,11,.38)_0%,rgba(8,10,11,.04)_34%,rgba(8,10,11,.18)_62%,rgba(8,10,11,.92)_100%)] lg:bg-[linear-gradient(180deg,rgba(8,10,11,0)_0%,rgba(8,10,11,0)_65%,rgba(8,10,11,.42)_82%,rgba(8,10,11,.90)_100%)]" />
 
-      <Container className="flex h-full max-w-[90rem] flex-col px-4 pb-6 pt-[7.75rem] sm:px-6 lg:px-12 lg:pb-14 lg:pt-[10.75rem]">
+      <Container className="relative z-10 flex max-w-[90rem] flex-1 flex-col px-4 pb-6 pt-[7.75rem] sm:px-6 lg:static lg:z-auto lg:h-full lg:px-12 lg:pb-14 lg:pt-[10.75rem]">
         <div className="max-w-[36rem] lg:max-w-[42rem]">
           <Eyebrow className="mb-3 lg:mb-[1.0625rem]">{hero.eyebrow}</Eyebrow>
           <h1 className="max-w-[21rem] text-[clamp(2.6rem,10.7vw,4.5rem)] font-black uppercase leading-[0.88] tracking-[-0.035em] text-[var(--theme-text)] lg:max-w-none lg:text-[clamp(4.75rem,5.55vw,5.125rem)] lg:leading-[0.90]">
