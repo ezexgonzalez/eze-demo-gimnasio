@@ -10,10 +10,24 @@ const focusableSelector =
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const menuButtonRef = useRef(null)
   const menuRef = useRef(null)
   const { links, cta } = siteConfig.navigation
   const hasNavigation = links.length > 0 || Boolean(cta)
+
+  useEffect(() => {
+    function updateScrolledState() {
+      setIsScrolled(window.scrollY > 20)
+    }
+
+    updateScrolledState()
+    window.addEventListener('scroll', updateScrolledState, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', updateScrolledState)
+    }
+  }, [])
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', isOpen)
@@ -66,7 +80,14 @@ export function Navbar() {
   }
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50 text-[var(--theme-text)]">
+    <header
+      className={[
+        'absolute inset-x-0 top-0 z-50 text-[var(--theme-text)] transition-[background-color,backdrop-filter] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]',
+        isScrolled
+          ? 'bg-[rgba(8,10,11,0.30)] backdrop-blur-[6px]'
+          : 'bg-transparent backdrop-blur-0',
+      ].join(' ')}
+    >
       <Container
         as="nav"
         aria-label="Navegación principal"
@@ -85,7 +106,7 @@ export function Navbar() {
           <div className="hidden items-center gap-10 lg:flex">
             {links.map((link) => (
               <a
-                className="text-[0.68rem] font-bold tracking-[0.11em] text-[var(--theme-secondary)] transition-colors hover:text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
+                className="nav-micro-link text-[0.68rem] font-bold tracking-[0.11em] text-[var(--theme-muted)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
                 href={link.href}
                 key={`${link.href}-${link.label}`}
               >
@@ -102,12 +123,12 @@ export function Navbar() {
               <span className="h-12 w-0.5 bg-[var(--theme-accent)]" />
             </span>
             <Button
-              className="h-12 gap-2.5 px-5 text-[0.68rem] tracking-[0.1em]"
+              className="micro-primary-cta h-12 gap-2.5 px-5 text-[0.68rem] tracking-[0.1em]"
               external={cta.external}
               href={cta.href}
             >
               <span>{cta.label}</span>
-              <ArrowRightIcon className="size-4" />
+              <ArrowRightIcon className="micro-cta-arrow size-4" />
             </Button>
           </div>
         ) : null}
@@ -117,7 +138,7 @@ export function Navbar() {
             aria-controls="mobile-navigation"
             aria-expanded={isOpen}
             aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
-            className="flex size-11 items-center justify-center justify-self-end rounded-[var(--theme-radius)] focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[var(--theme-accent)] lg:hidden"
+            className="flex size-11 items-center justify-center justify-self-end rounded-[var(--theme-radius)] transition-transform duration-150 active:scale-[0.96] focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[var(--theme-accent)] lg:hidden"
             onClick={() => setIsOpen((open) => !open)}
             ref={menuButtonRef}
             type="button"

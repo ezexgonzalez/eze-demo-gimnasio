@@ -23,7 +23,7 @@ export function HeroSection() {
     >
       <img
         alt="Atleta entrenando fuerza con barra en EZE Studio"
-        className="absolute inset-0 -z-30 size-full object-cover object-[60%_center] lg:object-[50%_0%]"
+        className="hero-enter-photo absolute inset-0 -z-30 size-full object-cover object-[60%_center] lg:object-[50%_0%]"
         fetchPriority="high"
         loading="eager"
         src={heroImage}
@@ -33,8 +33,10 @@ export function HeroSection() {
 
       <Container className="relative z-10 flex max-w-[90rem] flex-1 flex-col px-4 pb-6 pt-[7.75rem] sm:px-6 lg:static lg:z-auto lg:h-full lg:px-12 lg:pb-14 lg:pt-[10.75rem]">
         <div className="max-w-[36rem] lg:max-w-[42rem]">
-          <Eyebrow className="mb-3 lg:mb-[1.0625rem]">{hero.eyebrow}</Eyebrow>
-          <h1 className="max-w-[21rem] text-[clamp(2.6rem,10.7vw,4.5rem)] font-black uppercase leading-[0.88] tracking-[-0.035em] text-[var(--theme-text)] lg:max-w-none lg:text-[clamp(4.75rem,5.55vw,5.125rem)] lg:leading-[0.90]">
+          <Eyebrow className="hero-enter-eyebrow mb-3 lg:mb-[1.0625rem]">
+            {hero.eyebrow}
+          </Eyebrow>
+          <h1 className="hero-enter-title max-w-[21rem] text-[clamp(2.6rem,10.7vw,4.5rem)] font-black uppercase leading-[0.88] tracking-[-0.035em] text-[var(--theme-text)] lg:max-w-none lg:text-[clamp(4.75rem,5.55vw,5.125rem)] lg:leading-[0.90]">
             {hero.title.map((line) => (
               <span className="block lg:whitespace-nowrap" key={line}>
                 {line}
@@ -43,32 +45,32 @@ export function HeroSection() {
           </h1>
           <span
             aria-hidden="true"
-            className="mb-[1.3125rem] mt-[0.9375rem] block h-0.5 w-10 bg-[var(--theme-accent)] lg:mb-[1.0625rem] lg:mt-[1.0625rem] lg:w-12"
+            className="hero-enter-copy mb-[1.3125rem] mt-[0.9375rem] block h-0.5 w-10 bg-[var(--theme-accent)] lg:mb-[1.0625rem] lg:mt-[1.0625rem] lg:w-12"
           />
-          <p className="max-w-[20rem] text-[0.825rem] leading-[1.55] text-[var(--theme-secondary)] lg:max-w-[22rem] lg:text-base">
+          <p className="hero-enter-copy max-w-[20rem] text-[0.825rem] leading-[1.55] text-[var(--theme-secondary)] lg:max-w-[22rem] lg:text-base">
             {hero.description}
           </p>
 
-          <div className="mt-[1.6875rem] flex flex-col items-start gap-[1.0625rem] lg:mt-7 lg:flex-row lg:items-center lg:gap-7">
+          <div className="hero-enter-actions mt-[1.6875rem] flex flex-col items-start gap-[1.0625rem] lg:mt-7 lg:flex-row lg:items-center lg:gap-7">
             <Button
-              className="h-12 w-[12.75rem] gap-3 px-5 text-[0.68rem] tracking-[0.1em] lg:h-14 lg:w-[14.75rem] lg:text-xs"
+              className="micro-primary-cta h-12 w-[12.75rem] gap-3 px-5 text-[0.68rem] tracking-[0.1em] lg:h-14 lg:w-[14.75rem] lg:text-xs"
               external={hero.primaryCta.external}
               href={hero.primaryCta.href}
             >
               <span>{hero.primaryCta.label}</span>
-              <ArrowRightIcon className="size-4" />
+              <ArrowRightIcon className="micro-cta-arrow size-4" />
             </Button>
             <a
-              className="inline-flex min-h-8 items-center gap-2.5 text-[0.68rem] font-semibold tracking-[0.1em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:text-xs"
+              className="hero-secondary-action inline-flex min-h-8 items-center gap-2.5 text-[0.68rem] font-semibold tracking-[0.1em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:text-xs"
               href={hero.secondaryCta.href}
             >
-              <PlayIcon className="size-6 shrink-0 text-[var(--theme-accent)]" />
+              <PlayIcon className="hero-secondary-icon size-6 shrink-0 text-[var(--theme-accent)]" />
               <span>{hero.secondaryCta.label}</span>
             </a>
           </div>
         </div>
 
-        <div className="mt-auto border-t border-[var(--theme-border)] pb-4 pt-5 lg:border-0 lg:pb-0 lg:pt-0">
+        <div className="hero-enter-benefits mt-auto border-t border-[var(--theme-border)] pb-4 pt-5 lg:border-0 lg:pb-0 lg:pt-0">
           <ul className="grid grid-cols-3 lg:hidden">
             {hero.benefits.map((benefit, index) => {
               const BenefitIcon = benefitIcons[index]
