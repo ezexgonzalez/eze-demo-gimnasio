@@ -18,12 +18,12 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative isolate h-[clamp(620px,165vw,760px)] overflow-hidden bg-[var(--theme-background)] lg:h-[clamp(760px,57.3vw,840px)]"
+      className="relative isolate h-[clamp(620px,165vw,760px)] overflow-hidden bg-[var(--theme-background)] lg:h-[100svh] lg:min-h-[760px]"
       id="inicio"
     >
       <img
         alt="Atleta entrenando fuerza con barra en EZE Studio"
-        className="absolute inset-0 -z-30 size-full object-cover object-[67%_center] lg:object-center"
+        className="absolute inset-0 -z-30 size-full object-cover object-[67%_center] lg:object-[50%_0%]"
         fetchPriority="high"
         loading="eager"
         src={heroImage}
@@ -32,11 +32,11 @@ export function HeroSection() {
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(8,10,11,.38)_0%,rgba(8,10,11,.04)_34%,rgba(8,10,11,.18)_62%,rgba(8,10,11,.92)_100%)] lg:bg-[linear-gradient(180deg,rgba(8,10,11,0)_0%,rgba(8,10,11,0)_65%,rgba(8,10,11,.42)_82%,rgba(8,10,11,.90)_100%)]" />
 
       <Container className="flex h-full max-w-[90rem] flex-col px-4 pb-6 pt-[7.75rem] sm:px-6 lg:px-12 lg:pb-14 lg:pt-[10.75rem]">
-        <div className="max-w-[36rem]">
+        <div className="max-w-[36rem] lg:max-w-[42rem]">
           <Eyebrow className="mb-3 lg:mb-[1.0625rem]">{hero.eyebrow}</Eyebrow>
           <h1 className="max-w-[21rem] text-[clamp(2.6rem,10.7vw,4.5rem)] font-black uppercase leading-[0.88] tracking-[-0.035em] text-[var(--theme-text)] lg:max-w-none lg:text-[clamp(4.75rem,5.55vw,5.125rem)] lg:leading-[0.90]">
             {hero.title.map((line) => (
-              <span className="block" key={line}>
+              <span className="block lg:whitespace-nowrap" key={line}>
                 {line}
               </span>
             ))}
@@ -93,9 +93,9 @@ export function HeroSection() {
             })}
           </ul>
 
-          <ul className="hidden grid-cols-[auto_auto_auto] gap-12 lg:grid">
+          <ul className="hidden w-full max-w-[38rem] grid-cols-3 gap-x-10 lg:grid">
             {hero.benefits.map((benefit) => (
-              <li className="flex items-center gap-3" key={benefit}>
+              <li className="flex min-w-0 items-center gap-3" key={benefit}>
                 <span
                   aria-hidden="true"
                   className="h-9 w-0.5 shrink-0 bg-[var(--theme-accent)]"
