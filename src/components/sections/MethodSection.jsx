@@ -82,15 +82,15 @@ function EditorialAction({ label, mobile = false }) {
       <div className="mt-8 flex items-center text-[0.6875rem] font-bold tracking-[0.09em] text-[var(--theme-accent)]">
         <span>{label}</span>
         <span aria-hidden="true" className="mx-4 h-px min-w-4 flex-1 bg-[var(--theme-accent)]" />
-        <ArrowRightIcon className="size-5 shrink-0" />
+        <ArrowRightIcon className="size-4 shrink-0" />
       </div>
     )
   }
 
   return (
-    <div className="mt-8 inline-flex items-center gap-4 text-xs font-bold tracking-[0.09em] text-[var(--theme-accent)]">
+    <div className="mt-8 inline-flex w-fit max-w-full items-center gap-3 whitespace-nowrap text-xs font-bold tracking-[0.09em] text-[var(--theme-accent)]">
       <span>{label}</span>
-      <ArrowRightIcon className="size-5" />
+      <ArrowRightIcon className="size-4 shrink-0" />
     </div>
   )
 }
@@ -157,8 +157,8 @@ export function MethodSection() {
             <EditorialAction label={method.action} mobile />
           </div>
 
-          <div className="hidden lg:grid lg:grid-cols-[29%_67%] lg:items-center lg:justify-between">
-            <div>
+          <div className="hidden lg:grid lg:min-h-[21rem] lg:grid-cols-[28%_67%] lg:items-center lg:gap-x-[5%]">
+            <div className="flex min-w-0 flex-col items-start justify-center">
               <Eyebrow>{method.eyebrow}</Eyebrow>
               <h2 className="mt-4 text-[2.25rem] font-bold leading-[1.05] tracking-[-0.025em] text-[var(--theme-text)]">
                 {method.title.map((line) => (
@@ -173,67 +173,44 @@ export function MethodSection() {
               <EditorialAction label={method.action} />
             </div>
 
-            <div>
-              <div className="grid grid-cols-4">
-                {method.steps.map((step) => (
-                  <span
-                    className="text-center text-sm font-bold text-[var(--theme-accent)]"
-                    key={step.number}
-                  >
-                    {step.number}
-                  </span>
-                ))}
-              </div>
-
-              <div className="relative mt-4 grid h-14 grid-cols-4 items-center">
+            <ol className="relative grid grid-cols-4">
+              <span
+                aria-hidden="true"
+                className="absolute left-[12.5%] right-[12.5%] top-[3.75rem] h-px bg-[var(--theme-accent)]"
+              />
+              {[25, 50, 75].map((position) => (
                 <span
                   aria-hidden="true"
-                  className="absolute left-[12.5%] right-[12.5%] top-1/2 h-px bg-[var(--theme-accent)]"
+                  className="absolute top-[3.75rem] z-10 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--theme-accent)]"
+                  key={position}
+                  style={{ left: `${position}%` }}
                 />
-                {[25, 50, 75].map((position) => (
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-1/2 z-10 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--theme-accent)]"
-                    key={position}
-                    style={{ left: `${position}%` }}
-                  />
-                ))}
-                {method.steps.map((step, index) => {
-                  const StepIcon = methodIcons[index]
+              ))}
 
-                  return (
-                    <span
-                      className="relative z-10 mx-auto flex size-14 items-center justify-center rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)]"
-                      key={step.number}
-                    >
+              {method.steps.map((step, index) => {
+                const StepIcon = methodIcons[index]
+
+                return (
+                  <li
+                    className="relative z-10 grid min-w-0 grid-rows-[1.25rem_3.5rem_1.125rem_auto] gap-y-3"
+                    key={step.number}
+                  >
+                    <span className="text-center text-sm font-bold text-[var(--theme-accent)]">
+                      {step.number}
+                    </span>
+                    <span className="relative z-20 mx-auto flex size-14 items-center justify-center rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)]">
                       <StepIcon className="size-6 text-[var(--theme-secondary)]" />
                     </span>
-                  )
-                })}
-              </div>
-
-              <div className="mt-4 grid grid-cols-4">
-                {method.steps.map((step) => (
-                  <h3
-                    className="mx-auto w-full max-w-[10.5rem] text-left text-xs font-bold tracking-[0.09em] text-[var(--theme-accent)]"
-                    key={step.number}
-                  >
-                    {step.title}
-                  </h3>
-                ))}
-              </div>
-
-              <div className="mt-2 grid grid-cols-4">
-                {method.steps.map((step) => (
-                  <p
-                    className="mx-auto w-full max-w-[10.5rem] text-sm leading-6 text-[var(--theme-secondary)]"
-                    key={step.number}
-                  >
-                    {step.description}
-                  </p>
-                ))}
-              </div>
-            </div>
+                    <h3 className="w-full max-w-[9.5rem] justify-self-center text-left text-xs font-bold tracking-[0.09em] text-[var(--theme-accent)]">
+                      {step.title}
+                    </h3>
+                    <p className="w-full max-w-[9.5rem] justify-self-center text-left text-sm leading-6 text-[var(--theme-secondary)]">
+                      {step.description}
+                    </p>
+                  </li>
+                )
+              })}
+            </ol>
           </div>
         </div>
       </Container>
