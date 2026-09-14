@@ -46,10 +46,10 @@ export function TrainingSection() {
   const { training } = demoContent
 
   return (
-    <section id="entrenamiento" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:py-28">
-      <Container className="max-w-[90rem] px-4 sm:px-6 lg:px-12">
-        <div>
-          <div className="px-1 pb-9 pt-8 sm:px-2 sm:pb-11 sm:pt-10 lg:grid lg:grid-cols-[1.12fr_0.88fr] lg:items-end lg:gap-x-16 lg:px-0 lg:pb-9 lg:pt-12">
+    <section id="entrenamiento" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:flex lg:min-h-screen lg:py-0">
+      <Container className="max-w-[90rem] px-4 sm:px-6 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:px-12">
+        <div className="lg:w-full">
+          <div className="px-1 pb-9 pt-8 sm:px-2 sm:pb-11 sm:pt-10 lg:grid lg:grid-cols-[1.12fr_0.88fr] lg:items-end lg:gap-x-16 lg:px-0 lg:pb-8 lg:pt-0">
             <div>
               <Eyebrow>{training.eyebrow}</Eyebrow>
               <h2 className="mt-4 max-w-[10ch] text-[clamp(2.3rem,8vw,5rem)] font-black uppercase leading-[0.89] tracking-[-0.045em] text-[var(--theme-text)] lg:max-w-[10.5ch]">
@@ -66,7 +66,7 @@ export function TrainingSection() {
             </div>
           </div>
 
-          <div className="grid overflow-hidden lg:grid-cols-[1.25fr_0.86fr_0.94fr] lg:h-[38rem]">
+          <div className="grid overflow-hidden lg:grid-cols-[1.25fr_0.86fr_0.94fr] lg:h-[min(54vh,38rem)]">
             <TrainingPanel className="min-h-[25rem] lg:min-h-0 lg:border-r lg:border-[var(--theme-border)]" item={training.items[0]} />
             <TrainingPanel className="min-h-[20rem] border-t border-[var(--theme-border)] lg:min-h-0 lg:border-r lg:border-t-0 lg:border-[var(--theme-border)]" item={training.items[1]} />
             <TrainingPanel className="min-h-[20rem] border-t border-[var(--theme-border)] lg:min-h-0 lg:border-t-0" item={training.items[2]} />
