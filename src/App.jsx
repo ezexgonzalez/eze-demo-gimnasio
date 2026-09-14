@@ -4,6 +4,7 @@ import { MethodSection } from './components/sections/MethodSection'
 import { TrainingSection } from './components/sections/TrainingSection'
 import { SpaceSection } from './components/sections/SpaceSection'
 import { CoachesSection } from './components/sections/CoachesSection'
+import { PlansSection } from './components/sections/PlansSection'
 import { siteConfig } from './data/siteConfig'
 import { createThemeStyles } from './utils/themeStyles'
 
@@ -25,6 +26,7 @@ function App() {
         <TrainingSection />
         <SpaceSection />
         <CoachesSection />
+        <PlansSection />
       </main>
     </div>
   )
