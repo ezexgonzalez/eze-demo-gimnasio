@@ -38,9 +38,9 @@ export function Footer() {
   const { businessName, contact, navigation } = siteConfig
 
   return (
-    <footer className="bg-[var(--theme-background)] px-4 pb-8 pt-16 sm:px-6 sm:pb-10 sm:pt-20 lg:px-12">
-      <Container className="max-w-[90rem] px-0">
-        <div className="rounded-[14px] border border-[var(--theme-border)] bg-[linear-gradient(135deg,var(--theme-surface),var(--theme-elevated))] px-6 py-10 sm:px-10 sm:py-12 lg:px-16 lg:py-[6.5rem]">
+    <footer className="bg-[var(--theme-background)] px-4 pb-8 pt-16 sm:px-6 sm:pb-10 sm:pt-20 lg:flex lg:min-h-screen lg:px-12 lg:py-0">
+      <Container className="max-w-[90rem] px-0 lg:flex lg:min-h-screen lg:flex-col lg:justify-center">
+        <div className="py-2 lg:py-12">
           <div className="lg:grid lg:grid-cols-[1.08fr_0.95fr_1fr]">
             <div>
               <a
@@ -90,7 +90,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-[var(--theme-border)] pt-7 sm:flex sm:items-center sm:justify-between lg:mt-20">
+          <div className="mt-10 border-t border-[var(--theme-border)] pt-7 sm:flex sm:items-center sm:justify-between lg:mt-24">
             <p className="text-sm text-[var(--theme-muted)]">© 2026 {businessName}</p>
             <div className="mt-5 flex items-center gap-5 text-sm text-[var(--theme-text)] sm:mt-0">
               <a
