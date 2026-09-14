@@ -157,5 +157,13 @@ export const demoContent = {
         ],
       },
     ],
-  }
+  },
+  finalCta: {
+    eyebrow: 'TU PRÓXIMO PASO',
+    title: 'Tu próxima sesión empieza acá.',
+    description: 'Entrená con método, rodeado de personas que van por lo mismo que vos.',
+    cta: { label: 'AGENDÁ TU SESIÓN', href: siteConfig.navigation.cta.href },
+    image: '/src/assets/images/cta-final.png',
+    imageAlt: 'Coach conversando con una atleta durante una sesión de entrenamiento',
+  },
 }
