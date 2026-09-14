@@ -111,16 +111,6 @@ export function HeroSection() {
         </div>
       </Container>
 
-      <div
-        aria-hidden="true"
-        className="absolute right-12 top-[37%] hidden flex-col items-center text-xs font-bold tracking-[0.16em] text-[var(--theme-text)] lg:flex"
-      >
-        <span>01</span>
-        <span className="relative my-2 h-20 w-px bg-[var(--theme-border)]">
-          <span className="absolute left-0 top-0 h-5 w-px bg-[var(--theme-accent)]" />
-        </span>
-        <span className="text-[var(--theme-muted)]">04</span>
-      </div>
     </section>
   )
 }
