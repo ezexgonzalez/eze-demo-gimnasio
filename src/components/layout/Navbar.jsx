@@ -24,9 +24,7 @@ export function Navbar() {
     updateScrolledState()
     window.addEventListener('scroll', updateScrolledState, { passive: true })
 
-    return () => {
-      window.removeEventListener('scroll', updateScrolledState)
-    }
+    return () => window.removeEventListener('scroll', updateScrolledState)
   }, [])
 
   useEffect(() => {
@@ -82,9 +80,9 @@ export function Navbar() {
   return (
     <header
       className={[
-        'absolute inset-x-0 top-0 z-50 text-[var(--theme-text)] transition-[background-color,backdrop-filter] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]',
+        'fixed inset-x-0 top-0 z-50 text-[var(--theme-text)] transition-[background-color,backdrop-filter] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]',
         isScrolled
-          ? 'bg-[rgba(8,10,11,0.30)] backdrop-blur-[6px]'
+          ? 'border-b border-[var(--theme-border)] bg-[rgba(8,10,11,0.82)] backdrop-blur-[10px]'
           : 'bg-transparent backdrop-blur-0',
       ].join(' ')}
     >
