@@ -6,10 +6,10 @@ export const siteConfig = {
   businessName: 'EZE Studio',
   navigation: {
     links: [
-      { label: 'ENTRENAMIENTO', href: '#entrenamiento' },
       { label: 'MÉTODO', href: '#metodo' },
-      { label: 'COACHES', href: '#coaches' },
+      { label: 'ENTRENAMIENTO', href: '#entrenamiento' },
       { label: 'EL ESPACIO', href: '#espacio' },
+      { label: 'COACHES', href: '#coaches' },
       { label: 'PLANES', href: '#planes' },
     ],
     cta: {
