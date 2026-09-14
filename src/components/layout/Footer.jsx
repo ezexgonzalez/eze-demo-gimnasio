@@ -38,7 +38,6 @@ export function Footer() {
               className="inline-flex text-[2rem] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
               href="#inicio"
             >
-              <BrandMark />
               <EzeWordmark />
             </a>
             <p className="mt-7 max-w-[15rem] text-base leading-[1.8] text-[var(--theme-secondary)]">
