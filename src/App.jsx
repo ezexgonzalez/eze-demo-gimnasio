@@ -2,6 +2,7 @@ import { Navbar } from './components/layout/Navbar'
 import { HeroSection } from './components/sections/HeroSection'
 import { MethodSection } from './components/sections/MethodSection'
 import { TrainingSection } from './components/sections/TrainingSection'
+import { SpaceSection } from './components/sections/SpaceSection'
 import { siteConfig } from './data/siteConfig'
 import { createThemeStyles } from './utils/themeStyles'
 
@@ -21,6 +22,7 @@ function App() {
         <HeroSection />
         <MethodSection />
         <TrainingSection />
+        <SpaceSection />
       </main>
     </div>
   )
