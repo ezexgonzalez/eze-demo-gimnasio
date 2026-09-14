@@ -1,6 +1,7 @@
 import { EzeWordmark } from '../brand/EzeWordmark'
 import { Container } from '../ui/Container'
 import { siteConfig } from '../../data/siteConfig'
+import { Reveal } from '../ui/Reveal'
 
 
 function ContactItem({ children, href, external = false }) {
@@ -31,7 +32,7 @@ export function Footer() {
   return (
     <footer className="border-t border-[var(--theme-border)] bg-[var(--theme-elevated)] px-4 py-14 sm:px-6 sm:py-16 lg:px-12 lg:py-20">
       <Container className="max-w-[90rem] px-0">
-        <div className="lg:grid lg:grid-cols-[1.08fr_0.95fr_1fr]">
+        <Reveal className="lg:grid lg:grid-cols-[1.08fr_0.95fr_1fr]">
           <div>
             <a
               aria-label={`${businessName}, inicio`}
@@ -53,7 +54,7 @@ export function Footer() {
           >
             {navigation.links.map((link) => (
               <a
-                className="block py-2.5 text-[0.95rem] text-[var(--theme-text)] transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:py-3"
+                className="footer-link block py-2.5 text-[0.95rem] text-[var(--theme-text)] transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:py-3"
                 href={link.href}
                 key={link.href}
               >
@@ -77,16 +78,16 @@ export function Footer() {
               </ContactItem>
             </div>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="mt-10 border-t border-[var(--theme-border)] pt-7 sm:flex sm:items-center sm:justify-between lg:mt-16">
+        <Reveal className="mt-10" delay={100} border-t border-[var(--theme-border)] pt-7 sm:flex sm:items-center sm:justify-between lg:mt-16">
           <p className="text-sm text-[var(--theme-muted)]">© 2026 {businessName}</p>
           <div className="mt-5 flex items-center gap-5 text-sm text-[var(--theme-text)] sm:mt-0">
             <span>Privacidad</span>
             <span aria-hidden="true" className="h-7 w-px bg-[var(--theme-border)]" />
             <span>Términos y condiciones</span>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </footer>
   )

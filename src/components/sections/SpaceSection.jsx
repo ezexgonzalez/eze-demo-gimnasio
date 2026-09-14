@@ -4,6 +4,7 @@ import spaceDetailImage from '../../assets/images/space-imagen-vertical.webp'
 import { demoContent } from '../../data/demoContent'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/Eyebrow'
+import { Reveal } from '../ui/Reveal'
 
 export function SpaceSection() {
   const { space } = demoContent
@@ -12,7 +13,7 @@ export function SpaceSection() {
     <section id="espacio" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:py-20">
       <Container className="max-w-[90rem] px-4 sm:px-6 lg:px-12">
         <div>
-          <div className="lg:grid lg:grid-cols-[1.12fr_0.88fr] lg:items-center lg:gap-x-16 lg:pb-8">
+          <Reveal className="lg:grid lg:grid-cols-[1.12fr_0.88fr] lg:items-center lg:gap-x-16 lg:pb-8">
             <div>
               <Eyebrow>{space.eyebrow}</Eyebrow>
               <h2 className="mt-4 max-w-[12ch] text-[clamp(2.25rem,6.2vw,4.5rem)] font-black uppercase leading-[0.91] tracking-[-0.045em] text-[var(--theme-text)]">
@@ -25,9 +26,9 @@ export function SpaceSection() {
                 {space.description}
               </p>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="mt-8 overflow-hidden lg:mt-0 lg:grid lg:h-[min(57vh,40rem)] lg:grid-cols-[1.9fr_0.8fr] lg:gap-4">
+          <Reveal className="mt-8 overflow-hidden" variant="scale"> lg:mt-0 lg:grid lg:h-[min(57vh,40rem)] lg:grid-cols-[1.9fr_0.8fr] lg:gap-4">
             <div className="min-h-[28rem] overflow-hidden lg:min-h-0">
               <picture>
                 <source media="(max-width: 1023px)" srcSet={spaceMobileImage} />
@@ -50,9 +51,9 @@ export function SpaceSection() {
               />
               <span aria-hidden="true" className="absolute bottom-0 left-0 h-0.5 w-20 bg-[var(--theme-accent)]" />
             </div>
-          </div>
+          </Reveal>
 
-          <div className="mt-4 min-h-[15rem] overflow-hidden lg:hidden">
+          <Reveal className="mt-4 min-h-[15rem]" delay={100} variant="scale"> overflow-hidden lg:hidden">
             <img
               alt={space.detailImageAlt}
               className="size-full object-cover"
@@ -60,7 +61,7 @@ export function SpaceSection() {
               loading="lazy"
               src={spaceDetailImage}
             />
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

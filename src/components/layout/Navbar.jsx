@@ -11,6 +11,7 @@ const focusableSelector =
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
   const menuButtonRef = useRef(null)
   const menuRef = useRef(null)
   const { links, cta } = siteConfig.navigation
@@ -26,6 +27,19 @@ export function Navbar() {
 
     return () => window.removeEventListener('scroll', updateScrolledState)
   }, [])
+
+  useEffect(() => {
+    const sections = links.map((link) => document.querySelector(link.href)).filter(Boolean)
+    if (!('IntersectionObserver' in window) || sections.length === 0) return undefined
+
+    const observer = new IntersectionObserver((entries) => {
+      const active = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+      if (active) setActiveSection(`#${active.target.id}`)
+    }, { rootMargin: '-30% 0px -56% 0px', threshold: [0, 0.15, 0.45] })
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [links])
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', isOpen)
@@ -104,7 +118,7 @@ export function Navbar() {
           <div className="hidden items-center gap-10 lg:flex">
             {links.map((link) => (
               <a
-                className="nav-micro-link text-[0.68rem] font-bold tracking-[0.11em] text-[var(--theme-muted)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
+                className={['nav-micro-link text-[0.68rem] font-bold tracking-[0.11em] text-[var(--theme-muted)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]', activeSection === link.href ? 'is-active' : ''].filter(Boolean).join(' ')}
                 href={link.href}
                 key={`${link.href}-${link.label}`}
               >

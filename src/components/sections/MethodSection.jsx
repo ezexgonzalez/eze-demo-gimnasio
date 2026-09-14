@@ -1,6 +1,7 @@
 import { demoContent } from '../../data/demoContent'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/Eyebrow'
+import { Reveal } from '../ui/Reveal'
 
 function PersonIcon({ className = '' }) {
   return (
@@ -98,7 +99,7 @@ export function MethodSection() {
       className="border-y border-[var(--theme-border)] bg-[var(--theme-surface)] py-0 lg:border-y lg:border-[var(--theme-border)] lg:bg-[var(--theme-surface)] lg:py-0"
     >
       <Container className="max-w-[90rem] px-4 sm:px-6 lg:px-12">
-        <div className="rounded-none border-0 bg-transparent px-4 py-7 sm:px-6 sm:py-8 lg:min-h-[27rem] lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-12">
+        <Reveal className="rounded-none border-0 bg-transparent px-4 py-7 sm:px-6 sm:py-8 lg:min-h-[27rem] lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-12">
           <div className="lg:hidden">
             <Eyebrow>{method.eyebrow}</Eyebrow>
             <h2 className="mt-3 text-[1.75rem] font-bold leading-[1.05] tracking-[-0.02em] text-[var(--theme-text)]">
@@ -208,7 +209,7 @@ export function MethodSection() {
               })}
             </ol>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   )

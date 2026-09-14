@@ -3,6 +3,7 @@ import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/Eyebrow'
 import { ArrowRightIcon } from '../ui/icons'
+import { Reveal } from '../ui/Reveal'
 
 function FeatureList({ items, compact = false }) {
   return (
@@ -89,7 +90,7 @@ export function PlansSection() {
     <section id="planes" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:py-24">
       <Container className="max-w-[90rem] px-4 sm:px-6 lg:px-12">
         <div>
-          <div className="lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-x-12 lg:pb-6">
+          <Reveal className="lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-x-12 lg:pb-6">
             <div>
               <Eyebrow>{plans.eyebrow}</Eyebrow>
               <h2 className="mt-4 max-w-[12ch] text-[2.25rem] font-black leading-[0.94] tracking-[-0.04em] text-[var(--theme-text)] lg:text-[clamp(2.5rem,4.1vw,4rem)]">
@@ -99,9 +100,9 @@ export function PlansSection() {
             <p className="mt-6 max-w-[25rem] text-[0.875rem] leading-[1.65] text-[var(--theme-secondary)] lg:mt-0 lg:pb-1 lg:text-base">
               {plans.description}
             </p>
-          </div>
+          </Reveal>
 
-          <div className="mt-8 grid gap-4 lg:mt-0 lg:h-[clamp(30rem,60vh,38rem)] lg:grid-cols-[1.08fr_1fr]">
+          <Reveal className="mt-8 grid" delay={90}> gap-4 lg:mt-0 lg:h-[clamp(30rem,60vh,38rem)] lg:grid-cols-[1.08fr_1fr]">
             <article className="h-full border border-[var(--theme-accent)] p-7 sm:p-8 lg:min-h-0 lg:overflow-hidden lg:p-7">
               <PlanHeading plan={plans.featured} />
               <span aria-hidden="true" className="mt-6 block h-0.5 w-8 bg-[var(--theme-accent)]" />
@@ -119,7 +120,7 @@ export function PlansSection() {
                 {plans.options.map((plan) => <CompactPlan cta={plans.cta} key={plan.name} plan={plan} />)}
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

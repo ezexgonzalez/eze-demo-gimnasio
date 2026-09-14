@@ -3,6 +3,7 @@ import { demoContent } from '../../data/demoContent'
 import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
 import { ArrowRightIcon } from '../ui/icons'
+import { Reveal } from '../ui/Reveal'
 
 export function FinalCtaSection() {
   const { finalCta } = demoContent
@@ -13,12 +14,12 @@ export function FinalCtaSection() {
       className="bg-[var(--theme-background)] py-16 sm:py-20 lg:flex lg:min-h-screen lg:py-0"
     >
       <Container className="max-w-[90rem] px-4 sm:px-6 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:px-12">
-        <div className="relative min-h-[43rem] overflow-hidden rounded-[14px] bg-[var(--theme-surface)] lg:h-[min(68vh,44rem)] lg:min-h-0">
+        <Reveal className="relative min-h-[43rem] overflow-hidden rounded-[14px] bg-[var(--theme-surface)] lg:h-[min(68vh,44rem)] lg:min-h-0">
           <img
             alt={finalCta.imageAlt}
             decoding="async"
             loading="lazy"
-            className="absolute inset-0 size-full object-cover object-[58%_center] lg:object-[60%_center]"
+            className="motion-image absolute inset-0 size-full object-cover object-[58%_center] lg:object-[60%_center]"
             src={finalCtaImage}
           />
           <div
@@ -45,7 +46,7 @@ export function FinalCtaSection() {
               <ArrowRightIcon className="micro-cta-arrow size-6" />
             </Button>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   )
