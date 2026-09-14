@@ -2,17 +2,6 @@ import { EzeWordmark } from '../brand/EzeWordmark'
 import { Container } from '../ui/Container'
 import { siteConfig } from '../../data/siteConfig'
 
-function BrandMark() {
-  return (
-    <span aria-hidden="true" className="flex w-12 flex-col gap-1">
-      <span className="h-1 w-7 bg-[var(--theme-accent)]" />
-      <span className="h-1 w-10 bg-[var(--theme-text)]" />
-      <span className="h-1 w-8 bg-[var(--theme-text)]" />
-      <span className="h-1 w-11 bg-[var(--theme-text)]" />
-      <span className="mt-1 h-0.5 w-12 bg-[var(--theme-accent)]" />
-    </span>
-  )
-}
 
 function ContactItem({ children, href, external = false }) {
   const content = (
@@ -46,7 +35,7 @@ export function Footer() {
           <div>
             <a
               aria-label={`${businessName}, inicio`}
-              className="inline-flex items-center gap-6 text-[2rem] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
+              className="inline-flex text-[2rem] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
               href="#inicio"
             >
               <BrandMark />
