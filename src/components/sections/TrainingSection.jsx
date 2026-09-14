@@ -4,14 +4,13 @@ import acondicionamientoImage from '../../assets/images/entrenamiento-acondicion
 import { demoContent } from '../../data/demoContent'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/Eyebrow'
-import { ArrowRightIcon } from '../ui/icons'
 
 const trainingImages = [fuerzaImage, funcionalImage, acondicionamientoImage]
 
-function EditorialAction({ label }) {
+function EditorialCue({ label }) {
   return (
-    <div className="inline-flex w-fit items-center gap-3 text-[0.6875rem] font-bold tracking-[0.09em] text-[var(--theme-accent)] lg:text-xs">
-      <ArrowRightIcon aria-hidden="true" className="size-4 shrink-0" />
+    <div className="inline-flex w-fit items-center gap-3 text-[0.6875rem] font-bold tracking-[0.09em] text-[var(--theme-muted)] lg:text-xs">
+      <span aria-hidden="true" className="h-px w-7 shrink-0 bg-[var(--theme-accent)]" />
       <span className="max-w-[15rem] leading-[1.35]">{label}</span>
     </div>
   )
@@ -63,7 +62,7 @@ export function TrainingSection() {
                 {training.description}
               </p>
               <div className="mt-7 lg:mt-14">
-                <EditorialAction label={training.action} />
+                <EditorialCue label={training.action} />
               </div>
             </div>
           </div>
