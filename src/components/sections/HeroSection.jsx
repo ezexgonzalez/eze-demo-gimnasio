@@ -1,4 +1,4 @@
-import heroImage from '../../assets/images/hero.png'
+import heroImage from '../../assets/images/hero.webp'
 import { demoContent } from '../../data/demoContent'
 import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
