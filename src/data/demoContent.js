@@ -47,4 +47,31 @@ export const demoContent = {
       },
     ],
   },
+  training: {
+    eyebrow: 'ENTRENAMIENTO',
+    title: 'ENTRENAMIENTO PARA TODAS TUS VERSIONES.',
+    description:
+      'Fuerza, funcionalidad y acondicionamiento combinados para que superes tus límites y te conviertas en tu mejor versión.',
+    action: 'CONOCÉ MÁS SOBRE NUESTRO ENTRENAMIENTO',
+    items: [
+      {
+        title: 'FUERZA',
+        description: 'Construí base, potencia y rendimiento.',
+        image: '/src/assets/images/entrenamiento-fuerza.png',
+        imageAlt: 'Atleta realizando un levantamiento de fuerza con barra',
+      },
+      {
+        title: 'FUNCIONAL',
+        description: 'Movimientos reales para un cuerpo más fuerte y capaz.',
+        image: '/src/assets/images/entrenamiento-funcional.png',
+        imageAlt: 'Atleta realizando un ejercicio funcional con kettlebell',
+      },
+      {
+        title: 'ACONDICIONAMIENTO',
+        description: 'Mejorá tu resistencia, energía y rendimiento general.',
+        image: '/src/assets/images/entrenamiento-acondicionamiento.png',
+        imageAlt: 'Atleta empujando un trineo de acondicionamiento',
+      },
+    ],
+  },
 }
