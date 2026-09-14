@@ -56,7 +56,7 @@ function StandardPlan({ plan }) {
       <p className="mt-5 max-w-[18rem] text-sm leading-6 text-[var(--theme-secondary)]">{plan.description}</p>
       <FeatureList items={plan.features} />
       <a className="mt-6 inline-flex items-center gap-3 text-xs font-bold tracking-[0.08em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]" href="#contacto">
-        VER MÁS <ArrowRightIcon className="size-5 text-[var(--theme-accent)]" />
+        CONSULTAR PLAN <ArrowRightIcon className="size-5 text-[var(--theme-accent)]" />
       </a>
     </article>
   )
@@ -67,8 +67,16 @@ function CompactPlan({ plan }) {
     <article className="border border-[var(--theme-border)] px-6 py-5">
       <PlanHeading compact plan={plan} />
       <p className="mt-5 max-w-[16rem] text-[0.8125rem] leading-[1.55] text-[var(--theme-secondary)]">{plan.description}</p>
+      <details className="group mt-5">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-xs font-bold tracking-[0.08em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]">
+          <span>VER QUÉ INCLUYE</span>
+          <span aria-hidden="true" className="text-lg font-normal leading-none text-[var(--theme-accent)] group-open:hidden">+</span>
+          <span aria-hidden="true" className="hidden text-lg font-normal leading-none text-[var(--theme-accent)] group-open:inline">−</span>
+        </summary>
+        <FeatureList compact items={plan.features} />
+      </details>
       <a className="mt-5 inline-flex items-center gap-3 text-xs font-bold tracking-[0.08em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]" href="#contacto">
-        VER MÁS <ArrowRightIcon className="size-5 text-[var(--theme-accent)]" />
+        CONSULTAR PLAN <ArrowRightIcon className="size-5 text-[var(--theme-accent)]" />
       </a>
     </article>
   )
@@ -78,21 +86,19 @@ export function PlansSection() {
   const { plans } = demoContent
 
   return (
-    <section id="planes" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:flex lg:min-h-screen lg:py-0">
-      <Container className="max-w-[90rem] px-4 sm:px-6 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:px-12">
-        <div className="lg:w-full">
-          <div className="lg:grid lg:grid-cols-[0.96fr_1.04fr] lg:items-end lg:gap-x-20 lg:pb-10">
+    <section id="planes" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:py-24">
+      <Container className="max-w-[90rem] px-4 sm:px-6 lg:px-12">
+        <div>
+          <div className="lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-x-12 lg:pb-6">
             <div>
               <Eyebrow>{plans.eyebrow}</Eyebrow>
               <h2 className="mt-4 max-w-[12ch] text-[2.25rem] font-black leading-[0.94] tracking-[-0.04em] text-[var(--theme-text)] lg:text-[clamp(2.5rem,4.1vw,4rem)]">
                 {plans.title}
               </h2>
             </div>
-            <div className="mt-6 border-l border-[var(--theme-accent)] pl-6 lg:mt-0 lg:pl-10">
-              <p className="max-w-[25rem] text-[0.875rem] leading-[1.65] text-[var(--theme-secondary)] lg:text-base">
-                {plans.description}
-              </p>
-            </div>
+            <p className="mt-6 max-w-[25rem] text-[0.875rem] leading-[1.65] text-[var(--theme-secondary)] lg:mt-0 lg:pb-1 lg:text-base">
+              {plans.description}
+            </p>
           </div>
 
           <div className="mt-8 grid gap-4 lg:mt-0 lg:h-[clamp(30rem,60vh,38rem)] lg:grid-cols-[1.08fr_1fr]">
