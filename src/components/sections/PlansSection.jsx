@@ -48,21 +48,21 @@ function Price({ plan }) {
   )
 }
 
-function StandardPlan({ plan }) {
+function StandardPlan({ cta, plan }) {
   return (
     <article className="h-full border border-[var(--theme-border)] p-7 lg:min-h-0 lg:overflow-hidden lg:p-7">
       <PlanHeading plan={plan} />
       <span aria-hidden="true" className="mt-4 block h-0.5 w-6 bg-[var(--theme-accent)]" />
       <p className="mt-5 max-w-[18rem] text-sm leading-6 text-[var(--theme-secondary)]">{plan.description}</p>
       <FeatureList items={plan.features} />
-      <a className="mt-6 inline-flex items-center gap-3 text-xs font-bold tracking-[0.08em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]" href="#contacto">
+      <a className="mt-6 inline-flex items-center gap-3 text-xs font-bold tracking-[0.08em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]" href={cta.href} rel="noreferrer" target="_blank">
         CONSULTAR PLAN <ArrowRightIcon className="size-5 text-[var(--theme-accent)]" />
       </a>
     </article>
   )
 }
 
-function CompactPlan({ plan }) {
+function CompactPlan({ cta, plan }) {
   return (
     <article className="border border-[var(--theme-border)] px-6 py-5">
       <PlanHeading compact plan={plan} />
@@ -75,7 +75,7 @@ function CompactPlan({ plan }) {
         </summary>
         <FeatureList compact items={plan.features} />
       </details>
-      <a className="mt-5 inline-flex items-center gap-3 text-xs font-bold tracking-[0.08em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]" href="#contacto">
+      <a className="mt-5 inline-flex items-center gap-3 text-xs font-bold tracking-[0.08em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]" href={cta.href} rel="noreferrer" target="_blank">
         CONSULTAR PLAN <ArrowRightIcon className="size-5 text-[var(--theme-accent)]" />
       </a>
     </article>
@@ -113,10 +113,10 @@ export function PlansSection() {
             </article>
 
             <div className="space-y-4 lg:grid lg:h-full lg:min-h-0 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-4 lg:space-y-0">
-              <div className="hidden lg:block lg:min-h-0"><StandardPlan plan={plans.options[0]} /></div>
-              <div className="hidden lg:block lg:min-h-0"><StandardPlan plan={plans.options[1]} /></div>
+              <div className="hidden lg:block lg:min-h-0"><StandardPlan cta={plans.cta} plan={plans.options[0]} /></div>
+              <div className="hidden lg:block lg:min-h-0"><StandardPlan cta={plans.cta} plan={plans.options[1]} /></div>
               <div className="space-y-3 lg:hidden">
-                {plans.options.map((plan) => <CompactPlan key={plan.name} plan={plan} />)}
+                {plans.options.map((plan) => <CompactPlan cta={plans.cta} key={plan.name} plan={plan} />)}
               </div>
             </div>
           </div>
