@@ -1,3 +1,6 @@
+import spaceMainImage from '../../assets/images/space-completo.jpeg'
+import spaceMobileImage from '../../assets/images/space-mobile.png'
+import spaceDetailImage from '../../assets/images/space-imagen-vertical.png'
 import { demoContent } from '../../data/demoContent'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/Eyebrow'
@@ -6,9 +9,9 @@ export function SpaceSection() {
   const { space } = demoContent
 
   return (
-    <section id="espacio" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:flex lg:min-h-screen lg:py-0">
-      <Container className="max-w-[90rem] px-4 sm:px-6 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:px-12">
-        <div className="lg:w-full">
+    <section id="espacio" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:py-28">
+      <Container className="max-w-[90rem] px-4 sm:px-6 lg:px-12">
+        <div>
           <div className="lg:grid lg:grid-cols-[1.12fr_0.88fr] lg:items-center lg:gap-x-16 lg:pb-8">
             <div>
               <Eyebrow>{space.eyebrow}</Eyebrow>
@@ -27,18 +30,36 @@ export function SpaceSection() {
           <div className="mt-8 overflow-hidden lg:mt-0 lg:grid lg:h-[min(57vh,40rem)] lg:grid-cols-[1.9fr_0.8fr] lg:gap-4">
             <div className="min-h-[28rem] overflow-hidden lg:min-h-0">
               <picture>
-                <source media="(max-width: 1023px)" srcSet={space.mobileImage} />
-                <img alt={space.mainImageAlt} className="size-full object-cover" src={space.mainImage} />
+                <source media="(max-width: 1023px)" srcSet={spaceMobileImage} />
+                <img
+                  alt={space.mainImageAlt}
+                  className="size-full object-cover"
+                  decoding="async"
+                  loading="lazy"
+                  src={spaceMainImage}
+                />
               </picture>
             </div>
             <div className="relative mt-4 hidden min-h-0 overflow-hidden lg:mt-0 lg:block">
-              <img alt={space.detailImageAlt} className="size-full object-cover" src={space.detailImage} />
+              <img
+                alt={space.detailImageAlt}
+                className="size-full object-cover"
+                decoding="async"
+                loading="lazy"
+                src={spaceDetailImage}
+              />
               <span aria-hidden="true" className="absolute bottom-0 left-0 h-0.5 w-20 bg-[var(--theme-accent)]" />
             </div>
           </div>
 
           <div className="mt-4 min-h-[15rem] overflow-hidden lg:hidden">
-            <img alt={space.detailImageAlt} className="size-full object-cover" src={space.detailImage} />
+            <img
+              alt={space.detailImageAlt}
+              className="size-full object-cover"
+              decoding="async"
+              loading="lazy"
+              src={spaceDetailImage}
+            />
           </div>
         </div>
       </Container>
