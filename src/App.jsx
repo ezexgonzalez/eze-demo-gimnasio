@@ -1,3 +1,4 @@
+import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/layout/Navbar'
 import { HeroSection } from './components/sections/HeroSection'
 import { MethodSection } from './components/sections/MethodSection'
@@ -30,6 +31,8 @@ function App() {
         <PlansSection />
         <FinalCtaSection />
       </main>
+
+      <Footer />
     </div>
   )
 }
