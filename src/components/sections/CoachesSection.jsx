@@ -4,7 +4,7 @@ import { Eyebrow } from '../ui/Eyebrow'
 
 function CoachMeta({ coach, featured = false }) {
   return (
-    <div className={featured ? 'absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10' : 'min-w-0 py-5'}>
+    <div className={featured ? 'absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10' : 'min-w-0 py-5 pr-5 lg:py-6 lg:pr-8'}>
       <span aria-hidden="true" className="mb-4 block h-0.5 w-7 bg-[var(--theme-accent)]" />
       <h3 className="text-[1.25rem] font-bold uppercase leading-none tracking-[-0.025em] text-[var(--theme-text)] lg:text-xl">
         {coach.name}
@@ -21,7 +21,7 @@ function CoachMeta({ coach, featured = false }) {
 
 function SupportingCoach({ coach }) {
   return (
-    <article className="grid min-h-[10rem] grid-cols-[42%_1fr] border-t border-[var(--theme-border)]">
+    <article className="grid min-h-[10rem] grid-cols-[38%_1fr] gap-x-6 border-t border-[var(--theme-border)] sm:gap-x-7 lg:grid-cols-[40%_1fr] lg:gap-x-8">
       <img alt={coach.imageAlt} className="size-full object-cover" src={coach.image} />
       <CoachMeta coach={coach} />
     </article>
