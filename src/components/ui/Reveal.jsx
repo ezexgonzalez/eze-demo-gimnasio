@@ -2,22 +2,18 @@ import { useEffect, useRef, useState } from 'react'
 
 export function Reveal({ children, className = '', delay = 0, as: Tag = 'div', variant = 'up' }) {
   const ref = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const [isReady, setIsReady] = useState(false)
+  const [isVisible, setIsVisible] = useState(() => {
+    if (typeof window === 'undefined') return true
+
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      || !('IntersectionObserver' in window)
+  })
 
   useEffect(() => {
     const element = ref.current
-    if (!element) return undefined
-
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    if (reducedMotion || !('IntersectionObserver' in window)) {
-      setIsVisible(true)
-      return undefined
-    }
+    if (!element || isVisible) return undefined
 
     document.documentElement.classList.add('motion-ready')
-    setIsReady(true)
 
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return
@@ -27,12 +23,12 @@ export function Reveal({ children, className = '', delay = 0, as: Tag = 'div', v
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [])
+  }, [isVisible])
 
   return (
     <Tag
       ref={ref}
-      className={['reveal', `reveal--${variant}`, isReady ? 'reveal--ready' : '', isVisible ? 'reveal--visible' : '', className].filter(Boolean).join(' ')}
+      className={['reveal', `reveal--${variant}`, 'reveal--ready', isVisible ? 'reveal--visible' : '', className].filter(Boolean).join(' ')}
       style={{ '--reveal-delay': `${delay}ms` }}
     >
       {children}
