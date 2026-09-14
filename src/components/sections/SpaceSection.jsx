@@ -9,7 +9,7 @@ export function SpaceSection() {
   const { space } = demoContent
 
   return (
-    <section id="espacio" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:py-28">
+    <section id="espacio" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:py-20">
       <Container className="max-w-[90rem] px-4 sm:px-6 lg:px-12">
         <div>
           <div className="lg:grid lg:grid-cols-[1.12fr_0.88fr] lg:items-center lg:gap-x-16 lg:pb-8">
