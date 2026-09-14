@@ -6,8 +6,7 @@ import { Eyebrow } from '../ui/Eyebrow'
 import {
   ArrowRightIcon,
   CoachIcon,
-  GroupIcon,
-  PlayIcon,
+  GroupIcon
   TargetIcon,
 } from '../ui/icons'
 
@@ -64,7 +63,7 @@ export function HeroSection() {
               className="hero-secondary-action inline-flex min-h-8 items-center gap-2.5 text-[0.68rem] font-semibold tracking-[0.1em] text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:text-xs"
               href={hero.secondaryCta.href}
             >
-              <PlayIcon className="hero-secondary-icon size-6 shrink-0 text-[var(--theme-accent)]" />
+              <ArrowRightIcon className="hero-secondary-icon size-5 shrink-0 text-[var(--theme-accent)]" />
               <span>{hero.secondaryCta.label}</span>
             </a>
           </div>
