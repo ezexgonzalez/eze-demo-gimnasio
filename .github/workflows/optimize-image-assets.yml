@@ -1,0 +1,39 @@
+name: Optimize image assets
+
+on:
+  push:
+    paths:
+      - .github/workflows/optimize-image-assets.yml
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Install WebP tools
+        run: sudo apt-get update && sudo apt-get install -y webp
+
+      - name: Convert photography to WebP
+        run: |
+          set -euo pipefail
+          for asset in src/assets/images/*.{png,jpeg}; do
+            [ -f "$asset" ] || continue
+            quality=86
+            [ "$(basename "$asset")" = "hero.png" ] && quality=90
+            cwebp -quiet -m 6 -q "$quality" "$asset" -o "${asset%.*}.webp"
+          done
+          du -ch src/assets/images/*.{png,jpeg,webp} | tail -1
+
+      - name: Commit optimized assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/assets/images/*.webp
+          git diff --cached --quiet || git commit -m "perf: add optimized WebP photography"
+          git push
