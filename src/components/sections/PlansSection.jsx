@@ -101,7 +101,7 @@ export function PlansSection() {
               <span aria-hidden="true" className="mt-6 block h-0.5 w-8 bg-[var(--theme-accent)]" />
               <p className="mt-6 max-w-[22rem] text-base leading-7 text-[var(--theme-secondary)]">{plans.featured.description}</p>
               <FeatureList items={plans.featured.features} />
-              <Button className="micro-primary-cta mt-8 h-14 w-full gap-4 text-xs tracking-[0.08em]" href={plans.cta.href}>
+              <Button className="micro-primary-cta mt-8 h-14 w-full gap-4 text-xs tracking-[0.08em]" external href={plans.cta.href}>
                 {plans.cta.label}<ArrowRightIcon className="micro-cta-arrow size-5" />
               </Button>
             </article>
