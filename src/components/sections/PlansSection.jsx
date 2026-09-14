@@ -50,7 +50,7 @@ function Price({ plan }) {
 
 function StandardPlan({ plan }) {
   return (
-    <article className="border border-[var(--theme-border)] p-7 lg:p-9">
+    <article className="border border-[var(--theme-border)] p-7 lg:min-h-0 lg:overflow-hidden lg:p-7">
       <PlanHeading plan={plan} />
       <span aria-hidden="true" className="mt-4 block h-0.5 w-6 bg-[var(--theme-accent)]" />
       <p className="mt-5 max-w-[18rem] text-sm leading-6 text-[var(--theme-secondary)]">{plan.description}</p>
@@ -95,8 +95,8 @@ export function PlansSection() {
             </div>
           </div>
 
-          <div className="mt-8 grid gap-4 lg:mt-0 lg:grid-cols-[1.08fr_1fr]">
-            <article className="border border-[var(--theme-accent)] p-7 sm:p-8 lg:min-h-[43rem] lg:p-9">
+          <div className="mt-8 grid gap-4 lg:mt-0 lg:h-[clamp(30rem,60vh,38rem)] lg:grid-cols-[1.08fr_1fr]">
+            <article className="border border-[var(--theme-accent)] p-7 sm:p-8 lg:min-h-0 lg:overflow-hidden lg:p-7">
               <PlanHeading plan={plans.featured} />
               <span aria-hidden="true" className="mt-6 block h-0.5 w-8 bg-[var(--theme-accent)]" />
               <p className="mt-6 max-w-[22rem] text-base leading-7 text-[var(--theme-secondary)]">{plans.featured.description}</p>
@@ -106,7 +106,7 @@ export function PlansSection() {
               </Button>
             </article>
 
-            <div className="space-y-4">
+            <div className="space-y-4 lg:grid lg:h-full lg:grid-rows-2 lg:gap-4 lg:space-y-0">
               <div className="hidden lg:block"><StandardPlan plan={plans.options[0]} /></div>
               <div className="hidden lg:block"><StandardPlan plan={plans.options[1]} /></div>
               <div className="space-y-3 lg:hidden">
