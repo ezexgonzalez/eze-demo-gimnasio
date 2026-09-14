@@ -1,7 +1,6 @@
 import { demoContent } from '../../data/demoContent'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/Eyebrow'
-import { ArrowRightIcon } from '../ui/icons'
 
 function PersonIcon({ className = '' }) {
   return (
@@ -76,21 +75,16 @@ function CheckIcon({ className = '' }) {
 
 const methodIcons = [PersonIcon, ClipboardIcon, BarsIcon, CheckIcon]
 
-function EditorialAction({ label, mobile = false }) {
-  if (mobile) {
-    return (
-      <div className="mt-8 flex items-center text-[0.6875rem] font-bold tracking-[0.09em] text-[var(--theme-accent)]">
-        <span>{label}</span>
-        <span aria-hidden="true" className="mx-4 h-px min-w-4 flex-1 bg-[var(--theme-accent)]" />
-        <ArrowRightIcon className="size-4 shrink-0" />
-      </div>
-    )
-  }
-
+function EditorialCue({ label, mobile = false }) {
   return (
-    <div className="mt-8 inline-flex w-fit max-w-full items-center gap-3 whitespace-nowrap text-xs font-bold tracking-[0.09em] text-[var(--theme-accent)]">
+    <div
+      className={[
+        'mt-8 flex w-fit max-w-full items-center gap-3 text-[0.6875rem] font-bold tracking-[0.09em] text-[var(--theme-muted)]',
+        mobile ? '' : 'text-xs',
+      ].filter(Boolean).join(' ')}
+    >
+      <span aria-hidden="true" className="h-px w-7 shrink-0 bg-[var(--theme-accent)]" />
       <span>{label}</span>
-      <ArrowRightIcon className="size-4 shrink-0" />
     </div>
   )
 }
@@ -156,7 +150,7 @@ export function MethodSection() {
               </ol>
             </div>
 
-            <EditorialAction label={method.action} mobile />
+            <EditorialCue label={method.action} mobile />
           </div>
 
           <div className="hidden lg:grid lg:min-h-[21rem] lg:grid-cols-[28%_67%] lg:items-center lg:gap-x-[5%]">
@@ -172,7 +166,7 @@ export function MethodSection() {
               <p className="mt-6 max-w-[17rem] text-sm leading-6 text-[var(--theme-secondary)]">
                 {method.description}
               </p>
-              <EditorialAction label={method.action} />
+              <EditorialCue label={method.action} />
             </div>
 
             <ol className="relative grid grid-cols-4">
