@@ -57,19 +57,16 @@ export const demoContent = {
       {
         title: 'FUERZA',
         description: 'Construí base, potencia y rendimiento.',
-        image: '/src/assets/images/entrenamiento-fuerza.png',
         imageAlt: 'Atleta realizando un levantamiento de fuerza con barra',
       },
       {
         title: 'FUNCIONAL',
         description: 'Movimientos reales para un cuerpo más fuerte y capaz.',
-        image: '/src/assets/images/entrenamiento-funcional.png',
         imageAlt: 'Atleta realizando un ejercicio funcional con kettlebell',
       },
       {
         title: 'ACONDICIONAMIENTO',
         description: 'Mejorá tu resistencia, energía y rendimiento general.',
-        image: '/src/assets/images/entrenamiento-acondicionamiento.png',
         imageAlt: 'Atleta empujando un trineo de acondicionamiento',
       },
     ],
@@ -79,9 +76,6 @@ export const demoContent = {
     title: 'UN LUGAR PENSADO PARA RENDIR MEJOR.',
     description:
       'Diseñamos cada rincón para que entrenes con libertad, concentración y comodidad. Luz natural, espacios amplios y equipamiento de primer nivel.',
-    mainImage: '/src/assets/images/space-completo.jpeg',
-    mobileImage: '/src/assets/images/space-mobile.png',
-    detailImage: '/src/assets/images/space-imagen-vertical.png',
     mainImageAlt: 'Vista amplia del espacio de entrenamiento EZE Studio',
     detailImageAlt: 'Área de pesas y equipamiento del gimnasio',
   },
@@ -94,7 +88,6 @@ export const demoContent = {
       name: 'LUCAS RODRÍGUEZ',
       role: 'HEAD COACH',
       description: 'Especialista en fuerza y rendimiento deportivo.',
-      image: '/src/assets/images/coach-principal.png',
       imageAlt: 'Lucas Rodríguez acompañando a una atleta en su entrenamiento',
     },
     supporting: [
@@ -102,14 +95,12 @@ export const demoContent = {
         name: 'MICAELA GÓMEZ',
         role: 'COACH',
         description: 'Especialista en entrenamiento funcional y acondicionamiento.',
-        image: '/src/assets/images/coach2.png',
         imageAlt: 'Micaela Gómez, coach de entrenamiento funcional',
       },
       {
         name: 'SANTIAGO PERALTA',
         role: 'COACH',
         description: 'Especialista en hipertrofia y movimiento consciente.',
-        image: '/src/assets/images/coach1.png',
         imageAlt: 'Santiago Peralta, coach de hipertrofia',
       },
     ],
@@ -163,7 +154,6 @@ export const demoContent = {
     title: 'Tu próxima sesión empieza acá.',
     description: 'Entrená con método, rodeado de personas que van por lo mismo que vos.',
     cta: { label: 'AGENDÁ TU SESIÓN', href: siteConfig.navigation.cta.href },
-    image: '/src/assets/images/cta-final.png',
     imageAlt: 'Coach conversando con una atleta durante una sesión de entrenamiento',
   },
 }
