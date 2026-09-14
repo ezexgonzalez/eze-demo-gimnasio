@@ -35,6 +35,7 @@ export function FinalCtaSection() {
             </p>
             <Button
               className="micro-primary-cta mt-9 h-14 w-full max-w-[21.5rem] gap-5 text-xs tracking-[0.11em] lg:h-16"
+              external
               href={finalCta.cta.href}
             >
               {finalCta.cta.label}
