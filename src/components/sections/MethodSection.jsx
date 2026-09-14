@@ -99,9 +99,12 @@ export function MethodSection() {
   const { method } = demoContent
 
   return (
-    <section id="metodo" className="bg-[var(--theme-background)] py-3 lg:py-4">
+    <section
+      id="metodo"
+      className="border-y border-[var(--theme-border)] bg-[var(--theme-surface)] py-0 lg:border-y lg:border-[var(--theme-border)] lg:bg-[var(--theme-surface)] lg:py-0"
+    >
       <Container className="max-w-[90rem] px-4 sm:px-6 lg:px-12">
-        <div className="rounded-[var(--theme-radius)] border border-[var(--theme-border)] bg-[var(--theme-surface)] px-4 py-5 sm:px-6 sm:py-6 lg:min-h-[27rem] lg:px-10 lg:py-12">
+        <div className="rounded-none border-0 bg-transparent px-4 py-7 sm:px-6 sm:py-8 lg:min-h-[27rem] lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-12">
           <div className="lg:hidden">
             <Eyebrow>{method.eyebrow}</Eyebrow>
             <h2 className="mt-3 text-[1.75rem] font-bold leading-[1.05] tracking-[-0.02em] text-[var(--theme-text)]">
@@ -116,10 +119,6 @@ export function MethodSection() {
             </p>
 
             <div className="relative mt-7">
-              <span
-                aria-hidden="true"
-                className="absolute bottom-6 left-[6.5px] top-6 w-px bg-[var(--theme-accent)]"
-              />
               <ol className="relative space-y-5">
                 {method.steps.map((step, index) => {
                   const StepIcon = methodIcons[index]
@@ -129,8 +128,11 @@ export function MethodSection() {
                       className="grid grid-cols-[14px_48px_minmax(0,1fr)] items-start gap-x-3"
                       key={step.number}
                     >
-                      <span aria-hidden="true" className="flex h-12 items-center justify-center">
-                        <span className="size-2 rounded-full bg-[var(--theme-accent)]" />
+                      <span aria-hidden="true" className="relative min-h-12 self-stretch">
+                        {index < method.steps.length - 1 && (
+                          <span className="absolute -bottom-[2.75rem] left-1/2 top-6 z-0 w-px -translate-x-1/2 bg-[var(--theme-accent)]" />
+                        )}
+                        <span className="absolute left-1/2 top-6 z-10 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--theme-accent)]" />
                       </span>
                       <span className="flex size-12 items-center justify-center rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)]">
                         <StepIcon className="size-6 text-[var(--theme-secondary)]" />
@@ -192,19 +194,19 @@ export function MethodSection() {
 
                 return (
                   <li
-                    className="relative z-10 grid min-w-0 grid-rows-[1.25rem_3.5rem_1.125rem_auto] gap-y-3"
+                    className="relative z-10 grid min-w-0 grid-cols-[1fr_3.5rem_1fr] grid-rows-[1.25rem_3.5rem_1.125rem_auto] gap-y-3"
                     key={step.number}
                   >
-                    <span className="text-center text-sm font-bold text-[var(--theme-accent)]">
+                    <span className="col-start-2 row-start-1 text-center text-sm font-bold text-[var(--theme-accent)]">
                       {step.number}
                     </span>
-                    <span className="relative z-20 mx-auto flex size-14 items-center justify-center rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)]">
+                    <span className="relative z-20 col-start-2 row-start-2 flex size-14 items-center justify-center rounded-full border border-[var(--theme-border)] bg-[var(--theme-surface)]">
                       <StepIcon className="size-6 text-[var(--theme-secondary)]" />
                     </span>
-                    <h3 className="w-full max-w-[9.5rem] justify-self-center text-left text-xs font-bold tracking-[0.09em] text-[var(--theme-accent)]">
+                    <h3 className="col-start-2 col-end-4 row-start-3 min-w-0 text-left text-xs font-bold tracking-[0.09em] text-[var(--theme-accent)]">
                       {step.title}
                     </h3>
-                    <p className="w-full max-w-[9.5rem] justify-self-center text-left text-sm leading-6 text-[var(--theme-secondary)]">
+                    <p className="col-start-2 col-end-4 row-start-4 min-w-0 pr-3 text-left text-sm leading-6 text-[var(--theme-secondary)]">
                       {step.description}
                     </p>
                   </li>
