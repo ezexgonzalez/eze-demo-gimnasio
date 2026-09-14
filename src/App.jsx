@@ -5,6 +5,7 @@ import { TrainingSection } from './components/sections/TrainingSection'
 import { SpaceSection } from './components/sections/SpaceSection'
 import { CoachesSection } from './components/sections/CoachesSection'
 import { PlansSection } from './components/sections/PlansSection'
+import { FinalCtaSection } from './components/sections/FinalCtaSection'
 import { siteConfig } from './data/siteConfig'
 import { createThemeStyles } from './utils/themeStyles'
 
@@ -27,6 +28,7 @@ function App() {
         <SpaceSection />
         <CoachesSection />
         <PlansSection />
+        <FinalCtaSection />
       </main>
     </div>
   )
