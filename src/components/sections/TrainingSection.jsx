@@ -72,9 +72,10 @@ export function TrainingSection() {
             {training.items.map((item, index) => (
               <TrainingPanel
                 className={[
-                  'min-h-[20rem] border-t border-[var(--theme-border)] lg:min-h-0 lg:border-t-0',
-                  index === 0 ? 'min-h-[25rem] lg:border-r' : '',
-                  index === 1 ? 'lg:border-r' : '',
+                  index === 0
+                    ? 'min-h-[25rem] lg:min-h-0 lg:border-r lg:border-[var(--theme-border)]'
+                    : 'min-h-[20rem] border-t border-[var(--theme-border)] lg:min-h-0 lg:border-t-0',
+                  index === 1 ? 'lg:border-r lg:border-[var(--theme-border)]' : '',
                 ].filter(Boolean).join(' ')}
                 image={trainingImages[index]}
                 item={item}
