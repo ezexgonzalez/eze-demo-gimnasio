@@ -113,5 +113,49 @@ export const demoContent = {
         imageAlt: 'Santiago Peralta, coach de hipertrofia',
       },
     ],
+  },
+  plans: {
+    eyebrow: 'PLANES',
+    title: 'Elegí tu plan. Empezá hoy.',
+    description:
+      'Distintas frecuencias para adaptarse a tu objetivo, tu disponibilidad y tu mejor versión.',
+    cta: { label: 'ELEGIR PLAN', href: siteConfig.navigation.cta.href },
+    featured: {
+      name: 'PLAN 3X',
+      frequency: '3 veces por semana',
+      price: '$59.000',
+      recommended: true,
+      description: 'La frecuencia equilibrada para progresar de forma consistente.',
+      features: [
+        'Entrenamientos guiados y planificados',
+        'Seguimiento y ajustes personalizados',
+        'Acompañamiento de nuestros coaches',
+        'Acceso a todas las áreas del gimnasio',
+      ],
+    },
+    options: [
+      {
+        name: 'PLAN 2X',
+        frequency: '2 veces por semana',
+        price: '$45.000',
+        description: 'Para quien busca constancia con una frecuencia accesible.',
+        features: [
+          'Entrenamientos guiados',
+          'Planificación de entrenamientos',
+          'Acceso al espacio de entrenamiento',
+        ],
+      },
+      {
+        name: 'PLAN LIBRE',
+        frequency: 'Acceso flexible',
+        price: '$65.000',
+        description: 'Para quienes quieren entrenar con mayor frecuencia.',
+        features: [
+          'Acceso ilimitado al gimnasio',
+          'Planificación incluida',
+          'Acompañamiento de coaches',
+        ],
+      },
+    ],
   }
 }
