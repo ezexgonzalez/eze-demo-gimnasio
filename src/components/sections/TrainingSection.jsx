@@ -1,29 +1,31 @@
+import fuerzaImage from '../../assets/images/entrenamiento-fuerza.png'
+import funcionalImage from '../../assets/images/entrenamiento-funcional.png'
+import acondicionamientoImage from '../../assets/images/entrenamiento-acondicionamiento.png'
 import { demoContent } from '../../data/demoContent'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/Eyebrow'
 import { ArrowRightIcon } from '../ui/icons'
 
+const trainingImages = [fuerzaImage, funcionalImage, acondicionamientoImage]
+
 function EditorialAction({ label }) {
   return (
-    <a
-      className="training-editorial-action inline-flex w-fit items-center gap-3 text-[0.6875rem] font-bold tracking-[0.09em] text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:text-xs"
-      href="#contacto"
-    >
-      <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[var(--theme-accent)]">
-        <ArrowRightIcon className="size-4" />
-      </span>
+    <div className="inline-flex w-fit items-center gap-3 text-[0.6875rem] font-bold tracking-[0.09em] text-[var(--theme-accent)] lg:text-xs">
+      <ArrowRightIcon aria-hidden="true" className="size-4 shrink-0" />
       <span className="max-w-[15rem] leading-[1.35]">{label}</span>
-    </a>
+    </div>
   )
 }
 
-function TrainingPanel({ item, className = '' }) {
+function TrainingPanel({ item, image, className = '' }) {
   return (
     <article className={['relative min-h-0 overflow-hidden bg-[var(--theme-background)]', className].filter(Boolean).join(' ')}>
       <img
         alt={item.imageAlt}
         className="absolute inset-0 size-full object-cover"
-        src={item.image}
+        decoding="async"
+        loading="lazy"
+        src={image}
       />
       <div
         aria-hidden="true"
@@ -67,9 +69,18 @@ export function TrainingSection() {
           </div>
 
           <div className="grid overflow-hidden lg:grid-cols-[1.25fr_0.86fr_0.94fr] lg:h-[min(54vh,38rem)]">
-            <TrainingPanel className="min-h-[25rem] lg:min-h-0 lg:border-r lg:border-[var(--theme-border)]" item={training.items[0]} />
-            <TrainingPanel className="min-h-[20rem] border-t border-[var(--theme-border)] lg:min-h-0 lg:border-r lg:border-t-0 lg:border-[var(--theme-border)]" item={training.items[1]} />
-            <TrainingPanel className="min-h-[20rem] border-t border-[var(--theme-border)] lg:min-h-0 lg:border-t-0" item={training.items[2]} />
+            {training.items.map((item, index) => (
+              <TrainingPanel
+                className={[
+                  'min-h-[20rem] border-t border-[var(--theme-border)] lg:min-h-0 lg:border-t-0',
+                  index === 0 ? 'min-h-[25rem] lg:border-r' : '',
+                  index === 1 ? 'lg:border-r' : '',
+                ].filter(Boolean).join(' ')}
+                image={trainingImages[index]}
+                item={item}
+                key={item.title}
+              />
+            ))}
           </div>
         </div>
       </Container>
