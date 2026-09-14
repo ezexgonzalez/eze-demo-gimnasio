@@ -28,7 +28,7 @@ export function SpaceSection() {
             </div>
           </Reveal>
 
-          <Reveal className="mt-8 overflow-hidden" variant="scale"> lg:mt-0 lg:grid lg:h-[min(57vh,40rem)] lg:grid-cols-[1.9fr_0.8fr] lg:gap-4">
+          <Reveal className="mt-8 overflow-hidden lg:mt-0 lg:grid lg:h-[min(57vh,40rem)] lg:grid-cols-[1.9fr_0.8fr] lg:gap-4" variant="scale">
             <div className="min-h-[28rem] overflow-hidden lg:min-h-0">
               <picture>
                 <source media="(max-width: 1023px)" srcSet={spaceMobileImage} />
@@ -53,7 +53,7 @@ export function SpaceSection() {
             </div>
           </Reveal>
 
-          <Reveal className="mt-4 min-h-[15rem]" delay={100} variant="scale"> overflow-hidden lg:hidden">
+          <Reveal className="mt-4 min-h-[15rem] overflow-hidden lg:hidden" delay={100} variant="scale">
             <img
               alt={space.detailImageAlt}
               className="size-full object-cover"

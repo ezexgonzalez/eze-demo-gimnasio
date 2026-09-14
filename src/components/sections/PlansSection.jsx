@@ -102,7 +102,7 @@ export function PlansSection() {
             </p>
           </Reveal>
 
-          <Reveal className="mt-8 grid" delay={90}> gap-4 lg:mt-0 lg:h-[clamp(30rem,60vh,38rem)] lg:grid-cols-[1.08fr_1fr]">
+          <Reveal className="mt-8 grid gap-4 lg:mt-0 lg:h-[clamp(30rem,60vh,38rem)] lg:grid-cols-[1.08fr_1fr]" delay={90}>
             <article className="h-full border border-[var(--theme-accent)] p-7 sm:p-8 lg:min-h-0 lg:overflow-hidden lg:p-7">
               <PlanHeading plan={plans.featured} />
               <span aria-hidden="true" className="mt-6 block h-0.5 w-8 bg-[var(--theme-accent)]" />

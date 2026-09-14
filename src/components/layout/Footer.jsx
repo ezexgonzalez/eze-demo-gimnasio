@@ -80,7 +80,7 @@ export function Footer() {
           </div>
         </Reveal>
 
-        <Reveal className="mt-10" delay={100} border-t border-[var(--theme-border)] pt-7 sm:flex sm:items-center sm:justify-between lg:mt-16">
+        <Reveal className="mt-10 border-t border-[var(--theme-border)] pt-7 sm:flex sm:items-center sm:justify-between lg:mt-16" delay={100}>
           <p className="text-sm text-[var(--theme-muted)]">© 2026 {businessName}</p>
           <div className="mt-5 flex items-center gap-5 text-sm text-[var(--theme-text)] sm:mt-0">
             <span>Privacidad</span>
