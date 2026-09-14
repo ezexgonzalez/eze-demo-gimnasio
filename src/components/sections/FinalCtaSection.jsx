@@ -1,3 +1,4 @@
+import finalCtaImage from '../../assets/images/cta-final.png'
 import { demoContent } from '../../data/demoContent'
 import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
@@ -12,11 +13,13 @@ export function FinalCtaSection() {
       className="bg-[var(--theme-background)] py-16 sm:py-20 lg:flex lg:min-h-screen lg:py-0"
     >
       <Container className="max-w-[90rem] px-4 sm:px-6 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:px-12">
-        <div className="relative min-h-[43rem] overflow-hidden rounded-[14px] border border-white/12 bg-[var(--theme-surface)] shadow-[0_24px_70px_rgba(0,0,0,0.24)] lg:h-[min(68vh,44rem)] lg:min-h-0">
+        <div className="relative min-h-[43rem] overflow-hidden rounded-[14px] bg-[var(--theme-surface)] lg:h-[min(68vh,44rem)] lg:min-h-0">
           <img
             alt={finalCta.imageAlt}
+            decoding="async"
+            loading="lazy"
             className="absolute inset-0 size-full object-cover object-[58%_center] lg:object-[60%_center]"
-            src={finalCta.image}
+            src={finalCtaImage}
           />
           <div
             aria-hidden="true"
