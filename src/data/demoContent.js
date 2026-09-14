@@ -84,5 +84,34 @@ export const demoContent = {
     detailImage: '/src/assets/images/space-imagen-vertical.png',
     mainImageAlt: 'Vista amplia del espacio de entrenamiento EZE Studio',
     detailImageAlt: 'Área de pesas y equipamiento del gimnasio',
+  },
+  coaches: {
+    eyebrow: 'COACHES',
+    title: 'Entrenás con personas que están con vos.',
+    description:
+      'Te acompañamos con atención real, criterio y experiencia para que avances seguro, consistente y sin perder el foco.',
+    featured: {
+      name: 'LUCAS RODRÍGUEZ',
+      role: 'HEAD COACH',
+      description: 'Especialista en fuerza y rendimiento deportivo.',
+      image: '/src/assets/images/coach-principal.png',
+      imageAlt: 'Lucas Rodríguez acompañando a una atleta en su entrenamiento',
+    },
+    supporting: [
+      {
+        name: 'MICAELA GÓMEZ',
+        role: 'COACH',
+        description: 'Especialista en entrenamiento funcional y acondicionamiento.',
+        image: '/src/assets/images/coach1.png',
+        imageAlt: 'Micaela Gómez, coach de entrenamiento funcional',
+      },
+      {
+        name: 'SANTIAGO PERALTA',
+        role: 'COACH',
+        description: 'Especialista en hipertrofia y movimiento consciente.',
+        image: '/src/assets/images/coach2.png',
+        imageAlt: 'Santiago Peralta, coach de hipertrofia',
+      },
+    ],
   }
 }
