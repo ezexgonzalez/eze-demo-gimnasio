@@ -1,6 +1,11 @@
+import featuredCoachImage from '../../assets/images/coach-principal.png'
+import micaelaCoachImage from '../../assets/images/coach2.png'
+import santiagoCoachImage from '../../assets/images/coach1.png'
 import { demoContent } from '../../data/demoContent'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/Eyebrow'
+
+const coachImages = [micaelaCoachImage, santiagoCoachImage]
 
 function CoachMeta({ coach, featured = false }) {
   return (
@@ -19,10 +24,10 @@ function CoachMeta({ coach, featured = false }) {
   )
 }
 
-function SupportingCoach({ coach }) {
+function SupportingCoach({ coach, image }) {
   return (
     <article className="grid min-h-[10rem] grid-cols-[38%_1fr] gap-x-6 border-t border-[var(--theme-border)] sm:gap-x-7 lg:grid-cols-[40%_1fr] lg:gap-x-8">
-      <img alt={coach.imageAlt} className="size-full object-cover" src={coach.image} />
+      <img alt={coach.imageAlt} className="size-full object-cover" decoding="async" loading="lazy" src={image} />
       <CoachMeta coach={coach} />
     </article>
   )
@@ -48,7 +53,7 @@ export function CoachesSection() {
 
           <div className="mt-8 overflow-hidden lg:mt-0 lg:grid lg:h-[min(76vh,52rem)] lg:grid-cols-[1.35fr_0.97fr]">
             <article className="relative min-h-[31rem] overflow-hidden bg-[var(--theme-background)] lg:min-h-0 lg:border-r lg:border-[var(--theme-border)]">
-              <img alt={coaches.featured.imageAlt} className="absolute inset-0 size-full object-cover" src={coaches.featured.image} />
+              <img alt={coaches.featured.imageAlt} className="absolute inset-0 size-full object-cover" decoding="async" loading="lazy" src={featuredCoachImage} />
               <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,11,0.02)_35%,rgba(8,10,11,0.92)_100%)]" />
               <CoachMeta coach={coaches.featured} featured />
             </article>
@@ -64,7 +69,9 @@ export function CoachesSection() {
                   {coaches.description}
                 </p>
               </div>
-              {coaches.supporting.map((coach) => <SupportingCoach coach={coach} key={coach.name} />)}
+              {coaches.supporting.map((coach, index) => (
+                <SupportingCoach coach={coach} image={coachImages[index]} key={coach.name} />
+              ))}
             </div>
           </div>
         </div>
