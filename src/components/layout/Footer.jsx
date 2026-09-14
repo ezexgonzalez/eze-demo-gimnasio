@@ -14,7 +14,7 @@ function BrandMark() {
   )
 }
 
-function ContactItem({ children, href }) {
+function ContactItem({ children, href, external = false }) {
   const content = (
     <span className="flex gap-4">
       <span aria-hidden="true" className="mt-2 h-0.5 w-5 shrink-0 bg-[var(--theme-accent)]" />
@@ -26,6 +26,8 @@ function ContactItem({ children, href }) {
     <a
       className="transition-colors hover:text-[var(--theme-text)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
       href={href}
+      rel={external ? 'noreferrer' : undefined}
+      target={external ? '_blank' : undefined}
     >
       {content}
     </a>
@@ -74,11 +76,11 @@ export function Footer() {
 
           <div className="mt-8 border-t border-[var(--theme-border)] pt-8 text-[var(--theme-secondary)] lg:mt-0 lg:border-l lg:border-t-0 lg:px-12 lg:pt-2">
             <div className="space-y-7">
-              <ContactItem href={contact.whatsapp.href}>
+              <ContactItem external href={contact.whatsapp.href}>
                 <span className="block text-[var(--theme-text)]">WhatsApp</span>
                 <span className="mt-1 block">{contact.whatsapp.display}</span>
               </ContactItem>
-              <ContactItem href="https://instagram.com/ezestudio">
+              <ContactItem external href="https://instagram.com/ezestudio">
                 <span className="block text-[var(--theme-text)]">Instagram</span>
                 <span className="mt-1 block">{contact.instagram}</span>
               </ContactItem>
@@ -92,19 +94,9 @@ export function Footer() {
         <div className="mt-10 border-t border-[var(--theme-border)] pt-7 sm:flex sm:items-center sm:justify-between lg:mt-16">
           <p className="text-sm text-[var(--theme-muted)]">© 2026 {businessName}</p>
           <div className="mt-5 flex items-center gap-5 text-sm text-[var(--theme-text)] sm:mt-0">
-            <a
-              className="transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
-              href="#privacidad"
-            >
-              Privacidad
-            </a>
+            <span>Privacidad</span>
             <span aria-hidden="true" className="h-7 w-px bg-[var(--theme-border)]" />
-            <a
-              className="transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
-              href="#terminos"
-            >
-              Términos y condiciones
-            </a>
+            <span>Términos y condiciones</span>
           </div>
         </div>
       </Container>
