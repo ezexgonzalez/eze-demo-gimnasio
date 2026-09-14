@@ -73,5 +73,16 @@ export const demoContent = {
         imageAlt: 'Atleta empujando un trineo de acondicionamiento',
       },
     ],
-  },
+  },,
+  space: {
+    eyebrow: 'EL ESPACIO',
+    title: 'UN LUGAR PENSADO PARA RENDIR MEJOR.',
+    description:
+      'Diseñamos cada rincón para que entrenes con libertad, concentración y comodidad. Luz natural, espacios amplios y equipamiento de primer nivel.',
+    mainImage: '/src/assets/images/space-completo.jpeg',
+    mobileImage: '/src/assets/images/space-mobile.png',
+    detailImage: '/src/assets/images/space-imagen-vertical.png',
+    mainImageAlt: 'Vista amplia del espacio de entrenamiento EZE Studio',
+    detailImageAlt: 'Área de pesas y equipamiento del gimnasio',
+  }
 }
