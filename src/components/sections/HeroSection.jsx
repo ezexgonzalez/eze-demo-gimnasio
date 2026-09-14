@@ -6,7 +6,7 @@ import { Eyebrow } from '../ui/Eyebrow'
 import {
   ArrowRightIcon,
   CoachIcon,
-  GroupIcon
+  GroupIcon,
   TargetIcon,
 } from '../ui/icons'
 
