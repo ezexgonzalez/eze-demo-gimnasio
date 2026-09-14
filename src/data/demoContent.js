@@ -73,7 +73,7 @@ export const demoContent = {
         imageAlt: 'Atleta empujando un trineo de acondicionamiento',
       },
     ],
-  },,
+  },
   space: {
     eyebrow: 'EL ESPACIO',
     title: 'UN LUGAR PENSADO PARA RENDIR MEJOR.',
