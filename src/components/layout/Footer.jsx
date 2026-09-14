@@ -38,75 +38,73 @@ export function Footer() {
   const { businessName, contact, navigation } = siteConfig
 
   return (
-    <footer className="bg-[var(--theme-background)] px-4 pb-8 pt-16 sm:px-6 sm:pb-10 sm:pt-20 lg:flex lg:min-h-screen lg:px-12 lg:py-0">
-      <Container className="max-w-[90rem] px-0 lg:flex lg:min-h-screen lg:flex-col lg:justify-center">
-        <div className="py-2 lg:py-12">
-          <div className="lg:grid lg:grid-cols-[1.08fr_0.95fr_1fr]">
-            <div>
-              <a
-                aria-label={`${businessName}, inicio`}
-                className="inline-flex items-center gap-6 text-[2rem] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
-                href="#inicio"
-              >
-                <BrandMark />
-                <EzeWordmark />
-              </a>
-              <p className="mt-7 max-w-[15rem] text-base leading-[1.8] text-[var(--theme-secondary)]">
-                Fuerza con método.
-                <br />
-                Entrenamiento con propósito.
-              </p>
-            </div>
-
-            <nav
-              aria-label="Navegación del pie de página"
-              className="mt-8 border-t border-[var(--theme-border)] pt-8 sm:grid sm:grid-cols-2 sm:gap-x-8 lg:mt-0 lg:block lg:border-l lg:border-t-0 lg:px-16 lg:pt-2"
+    <footer className="border-t border-[var(--theme-border)] bg-[var(--theme-elevated)] px-4 py-14 sm:px-6 sm:py-16 lg:px-12 lg:py-20">
+      <Container className="max-w-[90rem] px-0">
+        <div className="lg:grid lg:grid-cols-[1.08fr_0.95fr_1fr]">
+          <div>
+            <a
+              aria-label={`${businessName}, inicio`}
+              className="inline-flex items-center gap-6 text-[2rem] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
+              href="#inicio"
             >
-              {navigation.links.map((link) => (
-                <a
-                  className="block py-2.5 text-[0.95rem] text-[var(--theme-text)] transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:py-3"
-                  href={link.href}
-                  key={link.href}
-                >
-                  {link.label.charAt(0) + link.label.slice(1).toLowerCase()}
-                </a>
-              ))}
-            </nav>
-
-            <div className="mt-8 border-t border-[var(--theme-border)] pt-8 text-[var(--theme-secondary)] lg:mt-0 lg:border-l lg:border-t-0 lg:px-12 lg:pt-2">
-              <div className="space-y-7">
-                <ContactItem href={contact.whatsapp.href}>
-                  <span className="block text-[var(--theme-text)]">WhatsApp</span>
-                  <span className="mt-1 block">{contact.whatsapp.display}</span>
-                </ContactItem>
-                <ContactItem href="https://instagram.com/ezestudio">
-                  <span className="block text-[var(--theme-text)]">Instagram</span>
-                  <span className="mt-1 block">{contact.instagram}</span>
-                </ContactItem>
-                <ContactItem>
-                  <span className="block text-[var(--theme-text)]">{contact.location}</span>
-                </ContactItem>
-              </div>
-            </div>
+              <BrandMark />
+              <EzeWordmark />
+            </a>
+            <p className="mt-7 max-w-[15rem] text-base leading-[1.8] text-[var(--theme-secondary)]">
+              Fuerza con método.
+              <br />
+              Entrenamiento con propósito.
+            </p>
           </div>
 
-          <div className="mt-10 border-t border-[var(--theme-border)] pt-7 sm:flex sm:items-center sm:justify-between lg:mt-24">
-            <p className="text-sm text-[var(--theme-muted)]">© 2026 {businessName}</p>
-            <div className="mt-5 flex items-center gap-5 text-sm text-[var(--theme-text)] sm:mt-0">
+          <nav
+            aria-label="Navegación del pie de página"
+            className="mt-8 border-t border-[var(--theme-border)] pt-8 sm:grid sm:grid-cols-2 sm:gap-x-8 lg:mt-0 lg:block lg:border-l lg:border-t-0 lg:px-16 lg:pt-2"
+          >
+            {navigation.links.map((link) => (
               <a
-                className="transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
-                href="#privacidad"
+                className="block py-2.5 text-[0.95rem] text-[var(--theme-text)] transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:py-3"
+                href={link.href}
+                key={link.href}
               >
-                Privacidad
+                {link.label.charAt(0) + link.label.slice(1).toLowerCase()}
               </a>
-              <span aria-hidden="true" className="h-7 w-px bg-[var(--theme-border)]" />
-              <a
-                className="transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
-                href="#terminos"
-              >
-                Términos y condiciones
-              </a>
+            ))}
+          </nav>
+
+          <div className="mt-8 border-t border-[var(--theme-border)] pt-8 text-[var(--theme-secondary)] lg:mt-0 lg:border-l lg:border-t-0 lg:px-12 lg:pt-2">
+            <div className="space-y-7">
+              <ContactItem href={contact.whatsapp.href}>
+                <span className="block text-[var(--theme-text)]">WhatsApp</span>
+                <span className="mt-1 block">{contact.whatsapp.display}</span>
+              </ContactItem>
+              <ContactItem href="https://instagram.com/ezestudio">
+                <span className="block text-[var(--theme-text)]">Instagram</span>
+                <span className="mt-1 block">{contact.instagram}</span>
+              </ContactItem>
+              <ContactItem>
+                <span className="block text-[var(--theme-text)]">{contact.location}</span>
+              </ContactItem>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-10 border-t border-[var(--theme-border)] pt-7 sm:flex sm:items-center sm:justify-between lg:mt-16">
+          <p className="text-sm text-[var(--theme-muted)]">© 2026 {businessName}</p>
+          <div className="mt-5 flex items-center gap-5 text-sm text-[var(--theme-text)] sm:mt-0">
+            <a
+              className="transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
+              href="#privacidad"
+            >
+              Privacidad
+            </a>
+            <span aria-hidden="true" className="h-7 w-px bg-[var(--theme-border)]" />
+            <a
+              className="transition-colors hover:text-[var(--theme-accent)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
+              href="#terminos"
+            >
+              Términos y condiciones
+            </a>
           </div>
         </div>
       </Container>
