@@ -3,6 +3,7 @@ import { HeroSection } from './components/sections/HeroSection'
 import { MethodSection } from './components/sections/MethodSection'
 import { TrainingSection } from './components/sections/TrainingSection'
 import { SpaceSection } from './components/sections/SpaceSection'
+import { CoachesSection } from './components/sections/CoachesSection'
 import { siteConfig } from './data/siteConfig'
 import { createThemeStyles } from './utils/themeStyles'
 
@@ -23,6 +24,7 @@ function App() {
         <MethodSection />
         <TrainingSection />
         <SpaceSection />
+        <CoachesSection />
       </main>
     </div>
   )
