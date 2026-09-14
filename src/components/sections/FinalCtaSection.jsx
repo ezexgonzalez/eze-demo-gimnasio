@@ -1,4 +1,4 @@
-import finalCtaImage from '../../assets/images/cta-final.png'
+import finalCtaImage from '../../assets/images/cta-final.webp'
 import { demoContent } from '../../data/demoContent'
 import { Button } from '../ui/Button'
 import { Container } from '../ui/Container'
