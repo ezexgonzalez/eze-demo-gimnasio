@@ -49,7 +49,8 @@ export const demoContent = {
   },
   training: {
     eyebrow: 'ENTRENAMIENTO',
-    title: 'ENTRENAMIENTO PARA TODAS TUS VERSIONES.',
+    title: ['Entrenamiento para', 'todas tus versiones.'],
+    mobileTitle: ['Entrenamiento', 'para todas tus', 'versiones.'],
     description:
       'Fuerza, funcionalidad y acondicionamiento combinados para que superes tus límites y te conviertas en tu mejor versión.',
     action: 'CONOCÉ MÁS SOBRE NUESTRO ENTRENAMIENTO',
@@ -73,15 +74,17 @@ export const demoContent = {
   },
   space: {
     eyebrow: 'EL ESPACIO',
-    title: 'UN LUGAR PENSADO PARA RENDIR MEJOR.',
+    title: ['Un lugar pensado', 'para rendir mejor.'],
+    mobileTitle: ['Un lugar', 'pensado para', 'rendir mejor.'],
     description:
       'Diseñamos cada rincón para que entrenes con libertad, concentración y comodidad. Luz natural, espacios amplios y equipamiento de primer nivel.',
-    mainImageAlt: 'Vista amplia del espacio de entrenamiento EZE Studio',
+    mainImageAlt: 'Vista amplia del espacio de entrenamiento de EWS',
     detailImageAlt: 'Área de pesas y equipamiento del gimnasio',
   },
   coaches: {
     eyebrow: 'COACHES',
-    title: 'Entrenás con personas que están con vos.',
+    title: ['Entrenás con personas', 'que están con vos.'],
+    mobileTitle: ['Entrenás con', 'personas que', 'están con vos.'],
     description:
       'Te acompañamos con atención real, criterio y experiencia para que avances seguro, consistente y sin perder el foco.',
     featured: {
@@ -107,10 +110,12 @@ export const demoContent = {
   },
   plans: {
     eyebrow: 'PLANES',
-    title: 'Elegí tu plan. Empezá hoy.',
+    title: ['Elegí tu plan.', 'Empezá hoy.'],
     description:
       'Distintas frecuencias para adaptarse a tu objetivo, tu disponibilidad y tu mejor versión.',
-    cta: { label: 'ELEGIR PLAN', href: siteConfig.navigation.cta.href },
+    cta: { label: 'ELEGIR PLAN' },
+    alternateCta: 'CONSULTAR PLAN',
+    detailsLabel: 'VER QUÉ INCLUYE',
     featured: {
       name: 'PLAN 3X',
       frequency: '3 veces por semana',
@@ -151,9 +156,9 @@ export const demoContent = {
   },
   finalCta: {
     eyebrow: 'TU PRÓXIMO PASO',
-    title: 'Tu próxima sesión empieza acá.',
+    title: ['Tu próxima', 'sesión empieza', 'acá.'],
     description: 'Entrená con método, rodeado de personas que van por lo mismo que vos.',
-    cta: { label: 'AGENDÁ TU SESIÓN', href: siteConfig.navigation.cta.href },
+    cta: { label: 'AGENDÁ TU SESIÓN' },
     imageAlt: 'Coach conversando con una atleta durante una sesión de entrenamiento',
   },
 }

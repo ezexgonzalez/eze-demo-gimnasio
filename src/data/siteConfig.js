@@ -1,31 +1,25 @@
-import { createWhatsAppUrl } from '../utils/contactUrls'
-
-const whatsappNumber = '541112345678'
-
 export const siteConfig = {
-  businessName: 'EZE Studio',
+  businessName: 'EWS',
   navigation: {
     links: [
-      { label: 'MÉTODO', href: '#metodo' },
-      { label: 'ENTRENAMIENTO', href: '#entrenamiento' },
-      { label: 'EL ESPACIO', href: '#espacio' },
-      { label: 'COACHES', href: '#coaches' },
-      { label: 'PLANES', href: '#planes' },
+      { label: 'Método', href: '#metodo' },
+      { label: 'Entrenamiento', href: '#entrenamiento' },
+      { label: 'El espacio', href: '#espacio' },
+      { label: 'Coaches', href: '#coaches' },
+      { label: 'Planes', href: '#planes' },
     ],
-    cta: {
-      label: 'AGENDA TU SESIÓN',
-      href: createWhatsAppUrl(whatsappNumber),
-      external: true,
-    },
+    cta: { label: 'AGENDA TU SESIÓN' },
   },
-  contact: {
-    whatsapp: {
-      display: '+54 11 1234 5678',
-      number: whatsappNumber,
-      href: createWhatsAppUrl(whatsappNumber),
+  demo: {
+    note: 'Proyecto conceptual de Eze Web Studio.',
+    title: 'Esta es una demo',
+    message: 'No se realizan reservas ni contrataciones reales. Los planes, precios y perfiles son ilustrativos.',
+    closeLabel: 'Entendido',
+    contact: {
+      whatsapp: 'Sin reservas reales',
+      instagram: 'Cuenta de demostración',
+      location: 'Quilmes, Buenos Aires, Argentina',
     },
-    instagram: '@ezestudio',
-    location: 'Quilmes, Buenos Aires, Argentina',
   },
   theme: {
     mode: 'dark',
@@ -34,10 +28,10 @@ export const siteConfig = {
     elevated: '#121619',
     text: '#F5F5F2',
     secondary: '#C2C5C7',
-    muted: '#858B90',
+    muted: '#A5AAAE',
     accent: '#FF573D',
-    accentText: '#F5F5F2',
-    border: 'rgba(255,255,255,0.12)',
-    radius: '0.875rem',
+    accentText: '#080A0B',
+    border: '#303437',
+    radius: '4px',
   },
 }

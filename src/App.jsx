@@ -1,3 +1,5 @@
+import { useRef } from 'react'
+import { Button } from './components/ui/Button'
 import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/layout/Navbar'
 import { HeroSection } from './components/sections/HeroSection'
@@ -11,6 +13,15 @@ import { siteConfig } from './data/siteConfig'
 import { createThemeStyles } from './utils/themeStyles'
 
 function App() {
+  const demoDialog = useRef(null)
+  const returnFocus = useRef(null)
+  const { demo } = siteConfig
+
+  function showDemo(trigger) {
+    returnFocus.current = trigger
+    demoDialog.current.showModal()
+  }
+
   return (
     <div
       className="site-shell min-h-screen bg-[var(--theme-background)] text-[var(--theme-text)]"
@@ -20,19 +31,25 @@ function App() {
         Ir al contenido
       </a>
 
-      <Navbar />
+      <Navbar onSession={showDemo} />
 
       <main id="main-content" tabIndex="-1">
-        <HeroSection />
+        <HeroSection onSession={showDemo} />
         <MethodSection />
         <TrainingSection />
         <SpaceSection />
         <CoachesSection />
-        <PlansSection />
-        <FinalCtaSection />
+        <PlansSection onSession={showDemo} />
+        <FinalCtaSection onSession={showDemo} />
       </main>
 
       <Footer />
+      <dialog className="demo-dialog" ref={demoDialog} aria-labelledby="demo-title"
+        aria-describedby="demo-message" onClose={() => returnFocus.current?.focus()}>
+        <h2 id="demo-title">{demo.title}</h2>
+        <p id="demo-message">{demo.message}</p>
+        <form method="dialog"><Button type="submit">{demo.closeLabel}</Button></form>
+      </dialog>
     </div>
   )
 }
