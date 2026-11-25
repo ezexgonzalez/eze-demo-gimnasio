@@ -9,9 +9,9 @@ export function FinalCtaSection({ onSession }) {
   const { finalCta } = demoContent
   return (
     <section className="final-cta" aria-labelledby="final-title">
-      <img className="final-photo photo" src={ctaPhoto} alt={finalCta.imageAlt} width="1672" height="941" loading="lazy" decoding="async" />
+      <img data-editorial className="final-photo photo" src={ctaPhoto} alt={finalCta.imageAlt} width="1672" height="941" loading="lazy" decoding="async" />
       <Container>
-        <div className="final-copy">
+        <div className="final-copy" data-editorial>
           <Eyebrow>{finalCta.eyebrow}</Eyebrow>
           <h2 id="final-title" className="section-title"><HeadingLines lines={finalCta.title} /></h2>
           <p>{finalCta.description}</p>

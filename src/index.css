@@ -164,7 +164,6 @@ h3 { font: 700 var(--h3-size)/var(--h3-leading) var(--display-font); letter-spac
 .plan-toggle { display: flex; align-items: center; justify-content: space-between; color: var(--theme-text); border-top: 1px solid var(--theme-border); min-height: 44px; width: 100%; cursor: pointer; font: 700 12px/19px var(--body-font); letter-spacing: .65px; }
 .plan-toggle:active { color: var(--theme-accent); }
 .plan-details ul { display: grid; gap: 6px; margin-block: 9px 21px; }
-@media (max-width: 1023px) { .plan-details[data-open="false"] ul { display: none; } }
 .plan-details li { display: flex; gap: 10px; }
 .plan-details li::before { content: ""; flex: 0 0 14px; height: 1px; margin-top: 10px; background: var(--theme-accent); }
 .plan-featured .plan-details ul { padding-top: 18px; margin-block: 11px 0; border-top: 1px solid var(--theme-border); gap: 14px; }
@@ -233,7 +232,8 @@ h3 { font: 700 var(--h3-size)/var(--h3-leading) var(--display-font); letter-spac
   .desktop-nav { display: flex; align-items: center; gap: clamp(17px, calc(17px + (100vw - 1024px) * .086), 53px); margin-right: 62px; font: 500 12px/18px var(--mono-font); text-transform: uppercase; letter-spacing: 1.45px; color: var(--theme-secondary); }
   .desktop-nav a { position: relative; display: grid; align-items: center; min-height: 44px; white-space: nowrap; transition: color var(--interaction); }
   .desktop-nav a[aria-current] { color: var(--theme-text); }
-  .desktop-nav a[aria-current]::after { content: ""; position: absolute; inset: auto 0 7px; height: 1px; background: var(--theme-accent); }
+  .desktop-nav a::after { content: ""; position: absolute; inset: auto 0 7px; height: 1px; background: var(--theme-accent); opacity: 0; pointer-events: none; }
+  .desktop-nav a[aria-current]::after { opacity: 1; }
   @media (hover: hover) and (pointer: fine) { .desktop-nav a:hover { color: var(--theme-text); } }
 
   .hero-layout { --hero-picture: clamp(600px, calc(600px + (100vw - 1280px) * .45), 672px); grid-template-columns: minmax(0, 1fr) minmax(0, min(var(--hero-picture), 53%)); align-items: start; gap: 0 14px; padding-top: clamp(20px, calc(20px + (100vw - 1280px) * .05), 28px); padding-bottom: calc(clamp(24px, calc(37px - (100vw - 1280px) * .08125), 37px) + var(--desktop-growth) * .0520833); }

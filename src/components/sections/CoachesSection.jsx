@@ -9,7 +9,7 @@ const supportingPhotos = [micaela, santiago]
 
 function CoachProfile({ person, photo, className }) {
   return (
-    <article className={className}>
+    <article className={className} data-editorial>
       <img className="coach-photo photo" src={photo} alt={person.imageAlt} width="1536" height="1024" loading="lazy" decoding="async" />
       <div className="coach-profile">
         <p className="coach-role">{person.role}</p>

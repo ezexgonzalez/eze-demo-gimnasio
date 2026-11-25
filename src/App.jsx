@@ -11,8 +11,12 @@ import { PlansSection } from './components/sections/PlansSection'
 import { FinalCtaSection } from './components/sections/FinalCtaSection'
 import { siteConfig } from './data/siteConfig'
 import { createThemeStyles } from './utils/themeStyles'
+import { useEditorialMotion } from './hooks/useEditorialMotion'
+import './styles/editorial-motion.css'
 
 function App() {
+  const main = useRef(null)
+  useEditorialMotion(main)
   const demoDialog = useRef(null)
   const returnFocus = useRef(null)
   const { demo } = siteConfig
@@ -33,7 +37,7 @@ function App() {
 
       <Navbar onSession={showDemo} />
 
-      <main id="main-content" tabIndex="-1">
+      <main ref={main} id="main-content" tabIndex="-1">
         <HeroSection onSession={showDemo} />
         <MethodSection />
         <TrainingSection />

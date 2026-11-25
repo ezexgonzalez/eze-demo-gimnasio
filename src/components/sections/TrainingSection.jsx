@@ -16,7 +16,7 @@ export function TrainingSection() {
         <ol className="training-grid">
           {training.items.map((item, index) => {
             const [src, width, height] = photos[index]
-            return <li key={item.title}>
+            return <li key={item.title} data-editorial>
               <img className="training-photo photo" src={src} alt={item.imageAlt} width={width} height={height} loading="lazy" decoding="async" />
               <div className="training-caption">
                 <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>

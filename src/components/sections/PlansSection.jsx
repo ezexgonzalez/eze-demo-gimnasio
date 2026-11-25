@@ -11,8 +11,9 @@ function PlanCard({ plan, onSession }) {
   const [open, setOpen] = useState(false)
   const featured = plan.recommended
   const { plans } = demoContent
+  const details = <ul id={id + '-details'}>{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
   return (
-    <article className={featured ? 'plan-card plan-featured' : 'plan-card'} aria-labelledby={id}>
+    <article data-editorial className={featured ? 'plan-card plan-featured' : 'plan-card'} aria-labelledby={id}>
       <div className="plan-heading">
         <div>
           {featured && <p className="plan-recommended">RECOMENDADO</p>}
@@ -25,7 +26,11 @@ function PlanCard({ plan, onSession }) {
       {!featured && <button className="plan-toggle" type="button" aria-expanded={open} aria-controls={id + '-details'}
         onClick={() => setOpen(value => !value)}>{plans.detailsLabel}<img src={open ? minus : plus} alt="" /></button>}
       <div className="plan-details" data-open={Boolean(featured || open)}>
-        <ul id={id + '-details'}>{plan.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+        {featured ? details : (
+          <div className="plan-collapse">
+            <div className="plan-collapse-inner">{details}</div>
+          </div>
+        )}
         <SessionButton label={featured ? plans.cta.label : plans.alternateCta} variant={featured ? 'primary' : 'ghost'} onSession={event => onSession(event.currentTarget)} />
       </div>
     </article>

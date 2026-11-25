@@ -38,3 +38,21 @@ Se revisaron 360 × 800, 390 × 844, 430 × 932, 768 × 1024, 1024 × 768, 1280 
 ## Pendiente de Dirección
 
 QA visual final en su navegador. El inventario de Figma (31:87) registra marca anterior dentro de los píxeles de estas fotos: `space-completo.webp`, `space-mobile.webp`, `coach-principal.webp`, `coach1.webp`, `coach2.webp`, `cta-final.webp` y `entrenamiento-fuerza.webp`. Se conservaron intactas; una eventual corrección fotográfica requiere aprobación. La rama `main`, la demo publicada y el portfolio de Eze Web Studio quedan fuera de la entrega.
+
+## Motion & Interaction Pass 01
+
+Base: `d0d467b5a07712c3caf5e2efc8ec7ad7cc8df987`. Se mantienen las composiciones de Figma, los recortes y los destinos. No se agregaron dependencias.
+
+| Sección | Movimiento |
+| --- | --- |
+| Hero | Tres líneas con máscara y desfases de 80 ms, apertura horizontal de la foto (920 ms) y secuencia de antetítulo, descripción, CTA y beneficios. La entrada completa dura 970 ms. |
+| Método | Cuatro pasos con recorrido de 14 px y reglas que se dibujan. En escritorio la secuencia usa 85 ms de desfase; en móvil cada paso entra por separado. |
+| Entrenamiento | Máscara fotográfica con zoom interno de 1.03, seguida por la ficha. Las fotos tienen desfase en escritorio y entrada individual más breve en móvil. |
+| El espacio | Apertura horizontal de la foto principal y máscara más suave en la secundaria; las dos conservan la alineación y el gap de 12 px a 390. |
+| Coaches | Máscara suave en la foto principal y aparición corta en las fichas; los retratos secundarios no usan zoom. |
+| Planes | Entrada breve y regla coral del Plan 3X. En móvil los planes secundarios interpolan la altura, mantienen el foco en el disparador y dejan su CTA disponible. |
+| Cierre y pie | Máscara de la fotografía y del título; descripción y CTA acompañan. El pie permanece estático. |
+
+El menú móvil conserva su diálogo nativo y suma un fundido y una secuencia de enlaces. El indicador activo de escritorio entra y sale por transición; el aviso de demo se abre con una transición breve y conserva Escape y retorno de foco. Un solo observador atiende las entradas al scroll y deja de observar cada elemento cuando pasa. No requiere ocultar contenido por adelantado; con movimiento reducido se muestra directamente el estado final.
+
+En Chromium, las capturas en reposo de 390, 1440 y 1920 coincidieron píxel por píxel con la versión anterior, ya contrastada con los frames finales de Figma. A 360, 390, 430, 768, 1024, 1280, 1440, 1920 y 2560 se conservaron las medidas registradas y no hubo overflow horizontal ni errores de recursos o consola. `npm run check` y `git diff --check` pasaron. Build: 67.00 kB JS y 10.43 kB CSS gzip, frente a 66.54 y 9.23 kB del baseline. El acordeón se comprobó durante la transición, con teclado y CTA disponible; el menú y el aviso conservaron Escape y retorno de foco. No se midió FPS ni LCP. La valoración estética del movimiento en el dispositivo de Dirección queda pendiente.
