@@ -1,199 +1,91 @@
 import { useEffect, useRef, useState } from 'react'
+import { navigateToSection } from '../../utils/sectionNavigation'
 import { siteConfig } from '../../data/siteConfig'
-import { EzeWordmark } from '../brand/EzeWordmark'
-import { Button } from '../ui/Button'
+import { EwsWordmark } from '../brand/EwsWordmark'
 import { Container } from '../ui/Container'
-import { ArrowRightIcon, MenuIcon } from '../ui/icons'
+import { SessionButton } from '../ui/SessionButton'
+import menuIcon from '../../assets/icons/menu.svg'
+import closeIcon from '../../assets/icons/close.svg'
+import arrowIcon from '../../assets/icons/arrow-coral.svg'
+import headerArrow from '../../assets/icons/arrow-small.svg'
 
-const focusableSelector =
-  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-
-export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
-  const menuButtonRef = useRef(null)
-  const menuRef = useRef(null)
+export function Navbar({ onSession }) {
+  const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('')
+  const dialog = useRef(null)
+  const menuButton = useRef(null)
+  const closeButton = useRef(null)
+  const brand = useRef(null)
   const { links, cta } = siteConfig.navigation
-  const hasNavigation = links.length > 0 || Boolean(cta)
 
   useEffect(() => {
-    function updateScrolledState() {
-      setIsScrolled(window.scrollY > 20)
+    if (!('IntersectionObserver' in window)) return
+    const sections = links.map(({ href }) => document.getElementById(href.slice(1))).filter(Boolean)
+    let observer
+    function observeReadingLine() {
+      observer?.disconnect()
+      // IntersectionObserver resolves percentage margins against width, even vertically.
+      const top = Math.round(window.innerHeight * .28)
+      const bottom = window.innerHeight - top - 1
+      observer = new IntersectionObserver(entries => {
+        const current = entries.find(entry => entry.isIntersecting)
+        if (current) setActive('#' + current.target.id)
+        else setActive(previous => entries.some(entry => '#' + entry.target.id === previous) ? '' : previous)
+      }, { rootMargin: `-${top}px 0px -${bottom}px 0px` })
+      sections.forEach(section => observer.observe(section))
     }
-
-    updateScrolledState()
-    window.addEventListener('scroll', updateScrolledState, { passive: true })
-
-    return () => window.removeEventListener('scroll', updateScrolledState)
-  }, [])
-
-  useEffect(() => {
-    const sections = links.map((link) => document.querySelector(link.href)).filter(Boolean)
-    if (!('IntersectionObserver' in window) || sections.length === 0) return undefined
-
-    const observer = new IntersectionObserver((entries) => {
-      const active = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
-      if (active) setActiveSection(`#${active.target.id}`)
-    }, { rootMargin: '-30% 0px -56% 0px', threshold: [0, 0.15, 0.45] })
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
+    observeReadingLine()
+    window.addEventListener('resize', observeReadingLine)
+    return () => {
+      observer?.disconnect()
+      window.removeEventListener('resize', observeReadingLine)
+    }
   }, [links])
 
   useEffect(() => {
-    document.body.classList.toggle('menu-open', isOpen)
-
-    if (!isOpen) {
-      return () => document.body.classList.remove('menu-open')
-    }
-
-    const menuControls = Array.from(
-      menuRef.current?.querySelectorAll(focusableSelector) ?? [],
-    )
-    const focusableControls = [menuButtonRef.current, ...menuControls].filter(
-      Boolean,
-    )
-
-    menuControls[0]?.focus()
-
-    function handleKeyDown(event) {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        setIsOpen(false)
-        menuButtonRef.current?.focus()
-        return
-      }
-
-      if (event.key !== 'Tab' || focusableControls.length === 0) return
-
-      const firstControl = focusableControls[0]
-      const lastControl = focusableControls.at(-1)
-
-      if (event.shiftKey && document.activeElement === firstControl) {
-        event.preventDefault()
-        lastControl.focus()
-      } else if (!event.shiftKey && document.activeElement === lastControl) {
-        event.preventDefault()
-        firstControl.focus()
+    const desktop = window.matchMedia('(min-width: 1024px)')
+    const closeAtDesktop = () => {
+      if (desktop.matches && dialog.current?.open) {
+        dialog.current.close()
+        brand.current?.focus()
       }
     }
+    desktop.addEventListener('change', closeAtDesktop)
+    return () => desktop.removeEventListener('change', closeAtDesktop)
+  }, [])
 
-    document.addEventListener('keydown', handleKeyDown)
+  function showMenu() {
+    dialog.current.showModal()
+    closeButton.current.focus()
+    setOpen(true)
+  }
 
-    return () => {
-      document.body.classList.remove('menu-open')
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [isOpen])
-
-  function closeMenu() {
-    setIsOpen(false)
+  function goToSection(event) {
+    navigateToSection(event, () => dialog.current.close())
   }
 
   return (
-    <header
-      className={[
-        'fixed inset-x-0 top-0 z-50 text-[var(--theme-text)] transition-[background-color,backdrop-filter] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]',
-        isScrolled
-          ? 'border-b border-[var(--theme-border)] bg-[rgba(8,10,11,0.82)] backdrop-blur-[10px]'
-          : 'bg-transparent backdrop-blur-0',
-      ].join(' ')}
-    >
-      <Container
-        as="nav"
-        aria-label="Navegación principal"
-        className="grid h-16 max-w-[90rem] grid-cols-[1fr_auto] items-center px-4 sm:px-6 lg:h-[5.25rem] lg:grid-cols-[1fr_auto_1fr] lg:px-12"
-      >
-        <a
-          aria-label={`${siteConfig.businessName}, inicio`}
-          className="text-xl focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)] lg:text-2xl"
-          href="#inicio"
-          onClick={closeMenu}
-        >
-          <EzeWordmark />
-        </a>
-
-        {hasNavigation ? (
-          <div className="hidden items-center gap-10 lg:flex">
-            {links.map((link) => (
-              <a
-                className={['nav-micro-link text-[0.68rem] font-bold tracking-[0.11em] text-[var(--theme-muted)] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]', activeSection === link.href ? 'is-active' : ''].filter(Boolean).join(' ')}
-                href={link.href}
-                key={`${link.href}-${link.label}`}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        ) : null}
-
-        {cta ? (
-          <div className="hidden items-center justify-self-end lg:flex">
-            <span aria-hidden="true" className="mr-3 flex h-12 items-center gap-1.5">
-              <span className="h-7 w-0.5 bg-[var(--theme-accent)]" />
-              <span className="h-12 w-0.5 bg-[var(--theme-accent)]" />
-            </span>
-            <Button
-              className="micro-primary-cta h-12 gap-2.5 px-5 text-[0.68rem] tracking-[0.1em]"
-              external={cta.external}
-              href={cta.href}
-            >
-              <span>{cta.label}</span>
-              <ArrowRightIcon className="micro-cta-arrow size-4" />
-            </Button>
-          </div>
-        ) : null}
-
-        {hasNavigation ? (
-          <button
-            aria-controls="mobile-navigation"
-            aria-expanded={isOpen}
-            aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
-            className="flex size-11 items-center justify-center justify-self-end rounded-[var(--theme-radius)] transition-transform duration-150 active:scale-[0.96] focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[var(--theme-accent)] lg:hidden"
-            onClick={() => setIsOpen((open) => !open)}
-            ref={menuButtonRef}
-            type="button"
-          >
-            <MenuIcon className="size-6" open={isOpen} />
-          </button>
-        ) : null}
+    <header className="site-header">
+      <Container className="header-inner">
+        <a href="#inicio" ref={brand} onClick={event => navigateToSection(event)} aria-label="EWS, inicio"><EwsWordmark /></a>
+        <nav className="desktop-nav" aria-label="Navegación principal">
+          {links.map(({ label, href }) => <a key={href} href={href} aria-current={active === href ? 'location' : undefined} onClick={event => navigateToSection(event)}>{label}</a>)}
+        </nav>
+        <SessionButton variant="secondary" className="header-session" label={cta.label} arrow={headerArrow} onSession={event => onSession(event.currentTarget)} />
+        <button type="button" className="menu-control" ref={menuButton} aria-label="Abrir menú" aria-haspopup="dialog"
+          aria-controls="mobile-navigation" aria-expanded={open} onClick={showMenu}><img src={menuIcon} alt="" /></button>
       </Container>
-
-      {hasNavigation ? (
-        <div
-          className={[
-            'absolute inset-x-0 top-full border-t border-[var(--theme-border)] bg-[var(--theme-background)] lg:hidden',
-            isOpen ? 'block' : 'hidden',
-          ].join(' ')}
-          id="mobile-navigation"
-          ref={menuRef}
-        >
-          <Container className="flex min-h-[calc(100svh-4rem)] flex-col items-start gap-5 py-8">
-            {links.map((link) => (
-              <a
-                className="min-h-11 py-2 text-lg font-bold tracking-[0.08em] focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-[var(--theme-accent)]"
-                href={link.href}
-                key={`${link.href}-${link.label}`}
-                onClick={closeMenu}
-              >
-                {link.label}
-              </a>
-            ))}
-            {cta ? (
-              <Button
-                className="mt-2 gap-2.5"
-                external={cta.external}
-                href={cta.href}
-                onClick={closeMenu}
-              >
-                <span>{cta.label}</span>
-                <ArrowRightIcon className="size-4" />
-              </Button>
-            ) : null}
-          </Container>
-        </div>
-      ) : null}
+      <dialog className="mobile-menu" id="mobile-navigation" ref={dialog} aria-label="Menú principal" onClose={() => setOpen(false)}>
+        <Container className="mobile-menu-header">
+          <a href="#inicio" onClick={goToSection} aria-label="EWS, inicio"><EwsWordmark /></a>
+          <button type="button" className="menu-control" ref={closeButton} aria-label="Cerrar menú" onClick={() => dialog.current.close()}><img src={closeIcon} alt="" /></button>
+        </Container>
+        <Container as="nav" className="mobile-menu-content" aria-label="Navegación móvil">
+          {links.map(({ label, href }) => <a key={href} href={href} aria-current={active === href ? 'location' : undefined}
+            onClick={goToSection}>{label}<img src={arrowIcon} alt="" /></a>)}
+          <SessionButton label={cta.label} onSession={() => { dialog.current.close(); onSession(menuButton.current) }} />
+        </Container>
+      </dialog>
     </header>
   )
 }

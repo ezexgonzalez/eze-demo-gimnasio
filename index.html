@@ -3,16 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EZE Studio | Fuerza con método</title>
+    <script>
+      // A reload starts a new visit; history traversal and deep links still restore normally.
+      if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+        const previousRestoration = history.scrollRestoration;
+        history.scrollRestoration = 'manual';
+        if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+        window.addEventListener('pageshow', () => {
+          requestAnimationFrame(() => { history.scrollRestoration = previousRestoration; });
+        }, { once: true });
+      }
+    </script>
+    <title>EWS Fitness | Fuerza con método</title>
     <meta
       name="description"
-      content="Entrenamiento de fuerza y funcional con método, acompañamiento y grupos reducidos en Quilmes."
+      content="Demo de gimnasio de Eze Web Studio: entrenamiento de fuerza y funcional con método."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="EZE Studio | Fuerza con método" />
+    <meta property="og:title" content="EWS Fitness | Fuerza con método" />
     <meta
       property="og:description"
-      content="Entrenamiento de fuerza y funcional con método, acompañamiento y grupos reducidos en Quilmes."
+      content="Demo de gimnasio de Eze Web Studio: entrenamiento de fuerza y funcional con método."
     />
     <meta name="twitter:card" content="summary" />
   </head>

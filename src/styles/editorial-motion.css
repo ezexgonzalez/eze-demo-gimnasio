@@ -1,0 +1,208 @@
+/* The resting page has no motion classes or hidden content. */
+.site-shell {
+  --motion-ease: cubic-bezier(.22, 1, .36, 1);
+  --motion-ui: 220ms;
+  --motion-editorial-ease: cubic-bezier(.32, .09, .33, 1);
+  --motion-copy: 840ms;
+  --motion-photo: 1180ms;
+  --motion-step: 0ms;
+}
+
+/* On desktop, the accordion is just the original, always-visible list. */
+.plan-collapse, .plan-collapse-inner { display: contents; }
+@media (max-width: 1023px) {
+  .plan-collapse { display: grid; grid-template-rows: 0fr; }
+  .plan-collapse-inner { display: flow-root; min-height: 0; overflow: hidden; visibility: hidden; }
+  .plan-details[data-open="true"] .plan-collapse { grid-template-rows: 1fr; }
+  .plan-details[data-open="true"] .plan-collapse-inner { visibility: visible; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .is-entering, :is(.is-awaiting, .is-revealing) { --motion-delay: 0ms; }
+
+  .hero.is-entering h1 > span {
+    animation: headline-rise 1000ms var(--motion-editorial-ease) calc(50ms + var(--line-delay, 0ms)) backwards;
+  }
+  .hero h1 > :nth-child(2) { --line-delay: 130ms; }
+  .hero h1 > :nth-child(3) { --line-delay: 260ms; }
+  .hero.is-entering .hero-photo { animation: photo-horizontal 1400ms var(--motion-editorial-ease); }
+  .hero.is-entering .eyebrow,
+  .hero.is-entering .hero-description,
+  .hero.is-entering .hero-actions > *,
+  .hero.is-entering .hero-benefits {
+    animation: support-enter var(--motion-copy) var(--motion-editorial-ease) var(--motion-delay) backwards;
+  }
+  .hero.is-entering .hero-description { --motion-delay: 370ms; }
+  .hero.is-entering .hero-actions > :first-child { --motion-delay: 490ms; }
+  .hero.is-entering .hero-actions > :last-child { --motion-delay: 570ms; }
+  .hero.is-entering .hero-benefits { --motion-delay: 710ms; }
+
+  .method-steps li, .plan-featured { position: relative; }
+  .method-steps li { border-top-color: transparent; }
+  .plan-featured { border-top-color: transparent; }
+  .method-steps li::before, .plan-featured::before {
+    content: "";
+    position: absolute;
+    inset: -1px 0 auto;
+    height: 1px;
+    background: var(--theme-border);
+    transform-origin: left;
+    pointer-events: none;
+  }
+  .plan-featured::before { top: -3px; height: 3px; background: var(--theme-accent); }
+  .method-steps :is(.is-awaiting, .is-revealing)::before,
+  .plan-featured:is(.is-awaiting, .is-revealing)::before {
+    animation: draw-rule var(--motion-copy) var(--motion-editorial-ease) var(--motion-delay) backwards;
+  }
+
+  .method-steps :is(.is-awaiting, .is-revealing) > * {
+    animation: method-step var(--motion-copy) var(--motion-editorial-ease) calc(var(--motion-delay) + 40ms) backwards;
+  }
+  .training-grid :is(.is-awaiting, .is-revealing) .training-photo {
+    animation: photo-rise var(--motion-photo) var(--motion-editorial-ease) var(--motion-delay) backwards;
+  }
+  .training-grid :is(.is-awaiting, .is-revealing) .training-caption {
+    animation: caption-enter var(--motion-copy) var(--motion-editorial-ease) calc(var(--motion-delay) + 160ms) backwards;
+  }
+  .space-gallery :is(.is-awaiting, .is-revealing) .space-main {
+    animation: photo-horizontal 1250ms var(--motion-editorial-ease) backwards;
+  }
+  .space-gallery .space-detail:is(.is-awaiting, .is-revealing) img {
+    animation: photo-detail 1120ms var(--motion-editorial-ease) var(--motion-step) backwards;
+  }
+  .coach-featured:is(.is-awaiting, .is-revealing) .coach-photo { animation: photo-detail 1100ms var(--motion-editorial-ease); }
+  .coach-featured:is(.is-awaiting, .is-revealing) .coach-profile {
+    animation: caption-enter var(--motion-copy) var(--motion-editorial-ease) 110ms backwards;
+  }
+  .coach-supporting:is(.is-awaiting, .is-revealing),
+  .plan-card:is(.is-awaiting, .is-revealing) {
+    animation: support-enter var(--motion-copy) var(--motion-editorial-ease) var(--motion-delay) backwards;
+  }
+
+  .final-photo:is(.is-awaiting, .is-revealing) { animation: photo-detail 1180ms var(--motion-editorial-ease); }
+  .final-copy:is(.is-awaiting, .is-revealing) .heading-line {
+    animation: headline-rise 870ms var(--motion-editorial-ease) var(--motion-delay) backwards;
+  }
+  .final-copy:is(.is-awaiting, .is-revealing) .heading-line + .heading-line { --motion-delay: 75ms; }
+  .final-copy:is(.is-awaiting, .is-revealing) > p,
+  .final-copy:is(.is-awaiting, .is-revealing) > .button {
+    animation: support-enter var(--motion-copy) var(--motion-editorial-ease) var(--motion-delay) backwards;
+  }
+  .final-copy:is(.is-awaiting, .is-revealing) > p:not(.eyebrow) { --motion-delay: 180ms; }
+  .final-copy:is(.is-awaiting, .is-revealing) > .button { --motion-delay: 250ms; }
+
+  /* A focused control and anything that contains it must remain steady. */
+  .hero.is-entering .hero-actions > :focus-visible,
+  .plan-card:is(.is-awaiting, .is-revealing):focus-within,
+  .final-copy:is(.is-awaiting, .is-revealing) > .button:focus-visible,
+  .mobile-menu[open] .mobile-menu-content > :focus-visible {
+    --enter-opacity: 1;
+    --enter-y: 0px;
+  }
+
+  .is-awaiting, .is-awaiting::before, .is-awaiting :where(*) {
+    animation-play-state: paused !important;
+  }
+
+  /* A delayed final headline starts partially visible while waiting offscreen. */
+  .final-copy:is(.is-awaiting, .is-revealing) .heading-line {
+    --headline-mask-start: 30%;
+  }
+
+  .mobile-menu {
+    opacity: 0;
+    transition: opacity var(--motion-ui) var(--motion-ease);
+    transition: opacity var(--motion-ui) var(--motion-ease), overlay var(--motion-ui) allow-discrete, display var(--motion-ui) allow-discrete;
+  }
+  .mobile-menu[open] { opacity: 1; }
+  .mobile-menu:not([open]) { pointer-events: none; }
+  @starting-style { .mobile-menu[open] { opacity: 0; } }
+
+  .mobile-menu[open] .mobile-menu-content > * {
+    animation: menu-link 300ms var(--motion-ease) calc(25ms + var(--menu-delay, 0ms)) backwards;
+  }
+  .mobile-menu-content > :nth-child(2) { --menu-delay: 42ms; }
+  .mobile-menu-content > :nth-child(3) { --menu-delay: 84ms; }
+  .mobile-menu-content > :nth-child(4) { --menu-delay: 126ms; }
+  .mobile-menu-content > :nth-child(5) { --menu-delay: 168ms; }
+  .mobile-menu-content > .button { --menu-delay: 210ms; }
+
+  .desktop-nav a::after {
+    transform: scaleX(.65);
+    transition: opacity var(--motion-ui) ease-out, transform var(--motion-ui) var(--motion-ease);
+  }
+  .desktop-nav a[aria-current]::after { transform: none; }
+  .button:focus-visible img { transform: translateX(3px); }
+
+  .demo-dialog[open] { animation: dialog-enter var(--motion-ui) var(--motion-ease); }
+
+  @media (max-width: 1023px) {
+    .plan-collapse { transition: grid-template-rows 240ms var(--motion-ease); }
+    .plan-collapse-inner { opacity: 0; transition: opacity 180ms ease-out, visibility 240ms; }
+    .plan-details[data-open="true"] .plan-collapse-inner { opacity: 1; transition-delay: 0ms; }
+    .training-grid :is(.is-awaiting, .is-revealing) .training-photo { --motion-photo: 1100ms; }
+    .space-gallery :is(.is-awaiting, .is-revealing) .space-main { animation-duration: 1100ms; }
+  }
+
+  @media (min-width: 1024px) {
+    .site-shell { --motion-step: 135ms; }
+    .method-steps :is(.is-awaiting, .is-revealing):nth-child(2), .training-grid :is(.is-awaiting, .is-revealing):nth-child(2),
+    .plans-grid :is(.is-awaiting, .is-revealing):nth-child(2), .coach-supporting:is(.is-awaiting, .is-revealing):nth-child(2) {
+      --motion-delay: var(--motion-step);
+    }
+    .method-steps :is(.is-awaiting, .is-revealing):nth-child(3), .training-grid :is(.is-awaiting, .is-revealing):nth-child(3),
+    .plans-grid :is(.is-awaiting, .is-revealing):nth-child(3) { --motion-delay: calc(2 * var(--motion-step)); }
+    .method-steps :is(.is-awaiting, .is-revealing):nth-child(4) { --motion-delay: calc(3 * var(--motion-step)); }
+  }
+}
+
+@keyframes headline-rise {
+  from { clip-path: inset(var(--headline-mask-start, 100%) -.12em 0); transform: translateY(.34em); }
+  to { clip-path: inset(-.23em -.12em -.24em); transform: none; }
+}
+
+@keyframes photo-horizontal {
+  from { clip-path: inset(0 37% 0 0); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes photo-rise {
+  /* Compensate for the 1.03 scale to keep the pixels inside the original box. */
+  from { clip-path: inset(12% 1.5% 1.5%); transform: scale(1.03); }
+  to { clip-path: inset(0); transform: none; }
+}
+
+@keyframes photo-detail {
+  from { clip-path: inset(0 0 16%); opacity: .8; }
+  to { clip-path: inset(0); opacity: 1; }
+}
+
+@keyframes support-enter {
+  from { opacity: var(--enter-opacity, .65); transform: translateY(var(--enter-y, 12px)); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes caption-enter {
+  from { opacity: .4; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes method-step {
+  from { opacity: .45; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes draw-rule {
+  from { transform: scaleX(0); }
+  to { transform: none; }
+}
+
+@keyframes menu-link {
+  from { opacity: var(--enter-opacity, .4); transform: translateY(var(--enter-y, 8px)); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes dialog-enter {
+  from { opacity: .55; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}

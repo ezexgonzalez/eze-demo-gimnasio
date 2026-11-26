@@ -1,81 +1,37 @@
-import featuredCoachImage from '../../assets/images/coach-principal.webp'
-import micaelaCoachImage from '../../assets/images/coach2.webp'
-import santiagoCoachImage from '../../assets/images/coach1.webp'
+import featured from '../../assets/images/coach-principal.webp'
+import micaela from '../../assets/images/coach2.webp'
+import santiago from '../../assets/images/coach1.webp'
 import { demoContent } from '../../data/demoContent'
 import { Container } from '../ui/Container'
-import { Eyebrow } from '../ui/Eyebrow'
-import { Reveal } from '../ui/Reveal'
+import { EditorialHeading } from '../ui/EditorialHeading'
 
-const coachImages = [micaelaCoachImage, santiagoCoachImage]
+const supportingPhotos = [micaela, santiago]
 
-function CoachMeta({ coach, featured = false }) {
+function CoachProfile({ person, photo, className }) {
   return (
-    <div className={featured ? 'absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10' : 'min-w-0 py-5 pr-5 lg:py-6 lg:pr-8'}>
-      <span aria-hidden="true" className="mb-4 block h-0.5 w-7 bg-[var(--theme-accent)]" />
-      <h3 className="text-[1.25rem] font-bold uppercase leading-none tracking-[-0.025em] text-[var(--theme-text)] lg:text-xl">
-        {coach.name}
-      </h3>
-      <p className="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.09em] text-[var(--theme-accent)]">
-        {coach.role}
-      </p>
-      <p className="mt-3 max-w-[15rem] text-[0.8125rem] leading-[1.55] text-[var(--theme-secondary)] lg:text-sm">
-        {coach.description}
-      </p>
-    </div>
-  )
-}
-
-function SupportingCoach({ coach, image }) {
-  return (
-    <article className="motion-panel grid min-h-[10rem] grid-cols-[38%_1fr] gap-x-6 border-t border-[var(--theme-border)] sm:gap-x-7 lg:grid-cols-[40%_1fr] lg:gap-x-8">
-      <img alt={coach.imageAlt} className="motion-image size-full object-cover" decoding="async" loading="lazy" src={image} />
-      <CoachMeta coach={coach} />
+    <article className={className} data-editorial>
+      <img className="coach-photo photo" src={photo} alt={person.imageAlt} width="1536" height="1024" loading="lazy" decoding="async" />
+      <div className="coach-profile">
+        <p className="coach-role">{person.role}</p>
+        <h3>{person.name}</h3>
+        <p>{person.description}</p>
+      </div>
     </article>
   )
 }
 
 export function CoachesSection() {
   const { coaches } = demoContent
-
   return (
-    <section id="coaches" className="bg-[var(--theme-background)] py-16 sm:py-20 lg:flex lg:min-h-screen lg:py-0">
-      <Container className="max-w-[90rem] px-4 sm:px-6 lg:flex lg:min-h-screen lg:flex-col lg:justify-center lg:px-12">
-        <Reveal className="lg:w-full">
-          <div className="lg:hidden">
-            <Eyebrow>{coaches.eyebrow}</Eyebrow>
-            <h2 className="mt-4 max-w-[12ch] text-[2.15rem] font-black leading-[0.94] tracking-[-0.04em] text-[var(--theme-text)]">
-              {coaches.title}
-            </h2>
-            <span aria-hidden="true" className="mt-5 block h-0.5 w-10 bg-[var(--theme-accent)]" />
-            <p className="mt-5 max-w-[23rem] text-[0.875rem] leading-[1.65] text-[var(--theme-secondary)]">
-              {coaches.description}
-            </p>
+    <section id="coaches" className="editorial coaches" aria-labelledby="coaches-title" tabIndex={-1}>
+      <Container>
+        <EditorialHeading id="coaches-title" content={coaches} />
+        <div className="coaches-grid">
+          <CoachProfile person={coaches.featured} photo={featured} className="coach-featured" />
+          <div className="coaches-supporting">
+            {coaches.supporting.map((person, index) => <CoachProfile key={person.name} person={person} photo={supportingPhotos[index]} className="coach-supporting" />)}
           </div>
-
-          <div className="mt-8 overflow-hidden lg:mt-0 lg:grid lg:h-[min(76vh,52rem)] lg:grid-cols-[1.35fr_0.97fr]">
-            <article className="motion-panel relative min-h-[31rem] overflow-hidden bg-[var(--theme-background)] lg:min-h-0 lg:border-r lg:border-[var(--theme-border)]">
-              <img alt={coaches.featured.imageAlt} className="motion-image absolute inset-0 size-full object-cover" decoding="async" loading="lazy" src={featuredCoachImage} />
-              <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,11,0.02)_35%,rgba(8,10,11,0.92)_100%)]" />
-              <CoachMeta coach={coaches.featured} featured />
-            </article>
-
-            <div className="lg:grid lg:grid-rows-[1.03fr_0.55fr_0.55fr]">
-              <div className="hidden border-b border-[var(--theme-border)] px-10 py-9 lg:block">
-                <Eyebrow>{coaches.eyebrow}</Eyebrow>
-                <h2 className="mt-5 max-w-[11ch] text-[clamp(2rem,3.7vw,3.55rem)] font-black leading-[0.94] tracking-[-0.04em] text-[var(--theme-text)]">
-                  {coaches.title}
-                </h2>
-                <span aria-hidden="true" className="mt-6 block h-0.5 w-10 bg-[var(--theme-accent)]" />
-                <p className="mt-6 max-w-[24rem] text-sm leading-6 text-[var(--theme-secondary)]">
-                  {coaches.description}
-                </p>
-              </div>
-              {coaches.supporting.map((coach, index) => (
-                <SupportingCoach coach={coach} image={coachImages[index]} key={coach.name} />
-              ))}
-            </div>
-          </div>
-        </Reveal>
+        </div>
       </Container>
     </section>
   )
