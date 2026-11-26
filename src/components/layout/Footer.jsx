@@ -1,3 +1,4 @@
+import { navigateToSection } from '../../utils/sectionNavigation'
 import { EwsWordmark } from '../brand/EwsWordmark'
 import { Container } from '../ui/Container'
 import { siteConfig } from '../../data/siteConfig'
@@ -9,12 +10,12 @@ export function Footer() {
       <Container>
         <div className="footer-grid">
           <div className="footer-brand">
-            <a href="#inicio" aria-label="EWS, inicio"><EwsWordmark /></a>
+            <a href="#inicio" onClick={event => navigateToSection(event)} aria-label="EWS, inicio"><EwsWordmark /></a>
             <p>Fuerza con método.<br />Entrenamiento con propósito.</p>
           </div>
           <nav className="footer-navigation" aria-label="Navegación del pie de página">
             <p className="footer-label">NAVEGACIÓN</p>
-            <ul>{navigation.links.map(({ label, href }) => <li key={href}><a href={href}>{label}</a></li>)}</ul>
+            <ul>{navigation.links.map(({ label, href }) => <li key={href}><a href={href} onClick={event => navigateToSection(event)}>{label}</a></li>)}</ul>
           </nav>
           <div className="footer-contact">
             <p className="footer-label">CONTACTO</p>

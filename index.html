@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // A reload starts a new visit; history traversal and deep links still restore normally.
+      if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+        const previousRestoration = history.scrollRestoration;
+        history.scrollRestoration = 'manual';
+        if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+        window.addEventListener('pageshow', () => {
+          requestAnimationFrame(() => { history.scrollRestoration = previousRestoration; });
+        }, { once: true });
+      }
+    </script>
     <title>EWS Fitness | Fuerza con método</title>
     <meta
       name="description"

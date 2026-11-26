@@ -56,3 +56,23 @@ Base: `d0d467b5a07712c3caf5e2efc8ec7ad7cc8df987`. Se mantienen las composiciones
 El menú móvil conserva su diálogo nativo y suma un fundido y una secuencia de enlaces. El indicador activo de escritorio entra y sale por transición; el aviso de demo se abre con una transición breve y conserva Escape y retorno de foco. Un solo observador atiende las entradas al scroll y deja de observar cada elemento cuando pasa. No requiere ocultar contenido por adelantado; con movimiento reducido se muestra directamente el estado final.
 
 En Chromium, las capturas en reposo de 390, 1440 y 1920 coincidieron píxel por píxel con la versión anterior, ya contrastada con los frames finales de Figma. A 360, 390, 430, 768, 1024, 1280, 1440, 1920 y 2560 se conservaron las medidas registradas y no hubo overflow horizontal ni errores de recursos o consola. `npm run check` y `git diff --check` pasaron. Build: 67.00 kB JS y 10.43 kB CSS gzip, frente a 66.54 y 9.23 kB del baseline. El acordeón se comprobó durante la transición, con teclado y CTA disponible; el menú y el aviso conservaron Escape y retorno de foco. No se midió FPS ni LCP. La valoración estética del movimiento en el dispositivo de Dirección queda pendiente.
+
+## Motion Refinement Pass 02
+
+Base: `2d0ecfc8512c6e3ce5b1d2812508292081051816`. Se mantuvo la dirección Athletic Editorial y el diseño en reposo. Los titulares del Hero duran 1000 ms, su foto 1400 ms y la última entrada termina a los 1550 ms. Las entradas de contenido duran alrededor de 840 ms; las fotos, entre 1100 y 1250 ms. El desfase de escritorio pasa a 135 ms. La curva editorial pierde velocidad más gradualmente; menú, botones, foco y acordeón conservan sus tiempos.
+
+El observador mide cada bloque por separado, excluye el header y cierra la zona de lectura al 80% de la altura útil. La entrada espera a que se vea el 20% del bloque dentro de esa zona, con tope del 16% de la altura útil para bloques altos. La primera pose se prepara fuera de pantalla; un salto que ya deja el contenido en la zona de lectura puede mostrarlo directamente. No hay repetición de entradas al volver a recorrer la página.
+
+Navbar, menú móvil, ambos logos, pie y «Conocé el espacio» conservan sus enlaces reales. En clic o Enter normales desplazan y enfocan su destino sin añadir un hash ni una entrada al historial. Si había un fragmento previo, se limpia con `replaceState` manteniendo query y estado. Una recarga explícita vuelve arriba y reinicia el Hero. Los enlaces profundos iniciales y la navegación por historial conservan su posición; no se interviene en la restauración de una página desde BFCache.
+
+### Medición en Chromium
+
+Posición vertical del borde superior de cada bloque en el momento de activarse (px CSS, relativa al viewport):
+
+| Viewport | Recorrido | Entradas | Posición al arrancar | Fin de zona de lectura |
+| --- | --- | ---: | ---: | ---: |
+| 390 × 844 | Scroll lento | 17 | 558–666 | 689 |
+| 1440 × 900 | Scroll normal | 17 | 523–644 | 736 |
+| 1920 × 1080 | Scroll rápido | 17 | 512–768 | 880 |
+
+Las capturas estáticas a 390, 1440 y 1920 fueron idénticas píxel por píxel a la implementación base, verificada contra Figma. Coincidieron también las medidas registradas en los nueve viewports del Pass 01, sin overflow horizontal en reposo. La prueba de historial verificó restauración de scroll con Atrás y navegación con Adelante; Chromium no reutilizó una página vía BFCache en este entorno. No se midieron FPS. `npm run check` y `git diff --check` pasaron.

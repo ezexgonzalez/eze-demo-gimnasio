@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { navigateToSection } from '../../utils/sectionNavigation'
 import { siteConfig } from '../../data/siteConfig'
 import { EwsWordmark } from '../brand/EwsWordmark'
 import { Container } from '../ui/Container'
@@ -59,19 +60,16 @@ export function Navbar({ onSession }) {
     setOpen(true)
   }
 
-  function goToSection(event, href) {
-    dialog.current.close()
-    setActive(href)
-    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
-    document.getElementById(href.slice(1))?.focus({ preventScroll: true })
+  function goToSection(event) {
+    navigateToSection(event, () => dialog.current.close())
   }
 
   return (
     <header className="site-header">
       <Container className="header-inner">
-        <a href="#inicio" ref={brand} aria-label="EWS, inicio"><EwsWordmark /></a>
+        <a href="#inicio" ref={brand} onClick={event => navigateToSection(event)} aria-label="EWS, inicio"><EwsWordmark /></a>
         <nav className="desktop-nav" aria-label="Navegación principal">
-          {links.map(({ label, href }) => <a key={href} href={href} aria-current={active === href ? 'location' : undefined} onClick={() => setActive(href)}>{label}</a>)}
+          {links.map(({ label, href }) => <a key={href} href={href} aria-current={active === href ? 'location' : undefined} onClick={event => navigateToSection(event)}>{label}</a>)}
         </nav>
         <SessionButton variant="secondary" className="header-session" label={cta.label} arrow={headerArrow} onSession={event => onSession(event.currentTarget)} />
         <button type="button" className="menu-control" ref={menuButton} aria-label="Abrir menú" aria-haspopup="dialog"
@@ -79,12 +77,12 @@ export function Navbar({ onSession }) {
       </Container>
       <dialog className="mobile-menu" id="mobile-navigation" ref={dialog} aria-label="Menú principal" onClose={() => setOpen(false)}>
         <Container className="mobile-menu-header">
-          <a href="#inicio" onClick={event => goToSection(event, '#inicio')} aria-label="EWS, inicio"><EwsWordmark /></a>
+          <a href="#inicio" onClick={goToSection} aria-label="EWS, inicio"><EwsWordmark /></a>
           <button type="button" className="menu-control" ref={closeButton} aria-label="Cerrar menú" onClick={() => dialog.current.close()}><img src={closeIcon} alt="" /></button>
         </Container>
         <Container as="nav" className="mobile-menu-content" aria-label="Navegación móvil">
           {links.map(({ label, href }) => <a key={href} href={href} aria-current={active === href ? 'location' : undefined}
-            onClick={event => goToSection(event, href)}>{label}<img src={arrowIcon} alt="" /></a>)}
+            onClick={goToSection}>{label}<img src={arrowIcon} alt="" /></a>)}
           <SessionButton label={cta.label} onSession={() => { dialog.current.close(); onSession(menuButton.current) }} />
         </Container>
       </dialog>

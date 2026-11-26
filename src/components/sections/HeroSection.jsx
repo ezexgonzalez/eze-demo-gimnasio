@@ -1,3 +1,4 @@
+import { navigateToSection } from '../../utils/sectionNavigation'
 import heroImage from '../../assets/images/hero.webp'
 import heroArrow from '../../assets/icons/arrow-hero.svg'
 import arrowSmall from '../../assets/icons/arrow-small.svg'
@@ -20,7 +21,7 @@ export function HeroSection({ onSession }) {
           <p className="hero-description">{hero.description}</p>
           <div className="hero-actions">
             <SessionButton label={hero.primaryCta.label} arrow={heroArrow} onSession={event => onSession(event.currentTarget)} />
-            <Button variant="ghost" className="hero-secondary" href={hero.secondaryCta.href}>
+            <Button variant="ghost" className="hero-secondary" href={hero.secondaryCta.href} onClick={event => navigateToSection(event)}>
               <span>{hero.secondaryCta.label}</span><img src={arrowSmall} alt="" />
             </Button>
           </div>
